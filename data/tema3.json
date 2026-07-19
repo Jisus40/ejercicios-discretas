@@ -1,0 +1,565 @@
+{
+  "tema_id": "tema3",
+  "titulo": "Álgebras de Boole",
+  "descripcion": "Reticulados acotados, complementados y distributivos. Axiomas abstractos, principio de dualidad, representación de funciones booleanas, formas normales y minimización.",
+  "subtemas": [
+    {
+      "subtema_id": "3.1",
+      "titulo": "Álgebra de Boole como reticulado",
+      "teoria": {
+        "introduccion": "Una Álgebra de Boole puede entenderse como un reticulado con propiedades adicionales: debe ser acotado (tener máximo y mínimo), complementado (cada elemento tiene complemento) y distributivo (las operaciones se distribuyen mutuamente). Estas tres condiciones juntas caracterizan completamente a las Álgebras de Boole.",
+        "definiciones": [
+          {
+            "nombre": "Reticulado acotado",
+            "contenido": "Un reticulado $[L, \\leq]$ (o $[L, \\vee, \\wedge]$) está **acotado** si tiene elemento máximo $M$ y elemento mínimo $m$. Es decir, existe $M \\in L$ tal que $x \\leq M$ para todo $x \\in L$, y existe $m \\in L$ tal que $m \\leq x$ para todo $x \\in L$.",
+            "nota": "Todo reticulado finito es acotado (Lema 3.1). Un reticulado infinito también puede serlo: $[\\mathbb{R}, \\leq]$ no lo es, pero $[\\mathcal{P}(S), \\subseteq]$ sí lo es con $M = S$ y $m = \\emptyset$."
+          },
+          {
+            "nombre": "Reticulado complementado",
+            "contenido": "Sea $[L, \\leq]$ un reticulado acotado con máximo $M$ y mínimo $m$. Para $x \\in L$, se dice que $\\bar{x} \\in L$ es el **complemento** de $x$ si: $x \\vee \\bar{x} = M$ y $x \\wedge \\bar{x} = m$. El reticulado es **complementado** si todo $x \\in L$ tiene complemento.",
+            "nota": "El complemento no siempre es único. Sin embargo, en un reticulado distributivo sí lo es (Lema 3.2)."
+          },
+          {
+            "nombre": "Álgebra de Boole",
+            "contenido": "Una **Álgebra de Boole** es un reticulado acotado, complementado y distributivo.",
+            "nota": "Esta es la definición 'como reticulado'. Más adelante veremos una definición puramente algebraica mediante axiomas."
+          }
+        ],
+        "ejemplos": [
+          {
+            "titulo": "Ejemplo 3.1 — $[\\mathcal{P}(U), \\subseteq]$ es Álgebra de Boole",
+            "descripcion": "Para cualquier conjunto universal $U$:",
+            "items": [
+              "Es reticulado: $A \\vee B = A \\cup B$, $A \\wedge B = A \\cap B$.",
+              "Es acotado: máximo $U$, mínimo $\\emptyset$.",
+              "Es complementado: el complemento de $A$ es $A^C = U \\setminus A$.",
+              "Es distributivo: $\\cup$ y $\\cap$ se distribuyen mutuamente."
+            ],
+            "observacion": "Este es el ejemplo canónico de Álgebra de Boole finita."
+          },
+          {
+            "titulo": "Ejemplo 3.2 — Proposiciones lógicas",
+            "descripcion": "El reticulado de proposiciones lógicas con $P \\preceq Q \\iff P \\implies Q$ es Álgebra de Boole:",
+            "items": [
+              "Mínimo: contradicción ($F$). Máximo: tautología ($V$).",
+              "Complemento: negación $\\neg P$.",
+              "Operaciones: disyunción $\\vee$ y conjunción $\\wedge$.",
+              "Distributividad: ambas operaciones son distributivas."
+            ],
+            "observacion": "Conecta la lógica proposicional con la teoría de reticulados."
+          },
+          {
+            "titulo": "Ejemplo — Un reticulado que NO es Álgebra de Boole",
+            "descripcion": "El reticulado $D_{12} = \\{1, 2, 3, 4, 6, 12\\}$ con divisibilidad no es complementado:",
+            "items": [
+              "Máximo: 12, mínimo: 1.",
+              "El elemento 2 no tiene complemento: necesitaría $x$ tal que $\\gcd(2,x) = 1$ y $\\operatorname{mcm}(2,x) = 12$. Esto da $x = 3$, pero $\\operatorname{mcm}(2,3) = 6 \\neq 12$."
+            ],
+            "observacion": "Por tanto, $[D_{12}, \\mid]$ no es Álgebra de Boole."
+          }
+        ],
+        "lemas": [
+          {
+            "nombre": "Lema 3.1 — Reticulados finitos son acotados",
+            "contenido": "Sea $[L, \\preceq]$ un reticulado con $L$ finito. Entonces $[L, \\preceq]$ es acotado.",
+            "esquema_demostracion": "El máximo es el supremo de todos los elementos (existe porque $L$ es finito y cerrado bajo supremos binarios). Análogo para el mínimo como ínfimo de todo $L$."
+          },
+          {
+            "nombre": "Lema 3.2 — Unicidad del complemento (distributivo)",
+            "contenido": "Sea $[L, \\preceq]$ un reticulado acotado y distributivo. Si $x \\in L$ tiene complemento, entonces el complemento es único.",
+            "esquema_demostracion": "Supongamos $x_1$ y $x_2$ complementos de $x$. Entonces: $x_1 = x_1 \\vee m = x_1 \\vee (x \\wedge x_2) = (x_1 \\vee x) \\wedge (x_1 \\vee x_2) = M \\wedge (x_1 \\vee x_2) = x_1 \\vee x_2$. Análogamente $x_2 = x_1 \\vee x_2$. Luego $x_1 = x_2$."
+          }
+        ],
+        "nota_previa": "La distributividad es crucial para la unicidad del complemento. En reticulados no distributivos, un elemento puede tener varios complementos distintos."
+      },
+      "ejercicios": [
+        {
+          "id": "3.1-ej-01",
+          "nivel": 1,
+          "etiquetas": [
+            "teoria",
+            "ejercicio"
+          ],
+          "enunciado": "Sea $[\\mathcal{P}(\\{1,2,3\\}), \\subseteq]$. Determine el complemento de $A = \\{1,2\\}$ y verifique las leyes del complemento.",
+          "tips": [
+            {
+              "titulo": "Complemento en el álgebra de conjuntos",
+              "contenido": "En $[\\mathcal{P}(U), \\subseteq]$, el complemento de $A$ es $A^C = U \\setminus A$."
+            },
+            {
+              "titulo": "Leyes del complemento",
+              "contenido": "Debes verificar que $A \\cup A^C = U$ y $A \\cap A^C = \\emptyset$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Calcular el complemento",
+                "contenido": "El universo es $U = \\{1,2,3\\}$. El complemento de $A = \\{1,2\\}$ es:",
+                "formula": "\\bar{A} = A^C = U \\setminus A = \\{3\\}"
+              },
+              {
+                "titulo": "Verificar $A \\vee \\bar{A} = M$",
+                "contenido": "El supremo es la unión:",
+                "formula": "A \\cup \\bar{A} = \\{1,2\\} \\cup \\{3\\} = \\{1,2,3\\} = U = M"
+              },
+              {
+                "titulo": "Verificar $A \\wedge \\bar{A} = m$",
+                "contenido": "El ínfimo es la intersección:",
+                "formula": "A \\cap \\bar{A} = \\{1,2\\} \\cap \\{3\\} = \\emptyset = m"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.1-ej-02",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Demuestre que en cualquier Álgebra de Boole se cumple $\\bar{\\bar{x}} = x$ (doble complementación).",
+          "tips": [
+            {
+              "titulo": "Definición de complemento",
+              "contenido": "$\\bar{x}$ es el único elemento tal que $x \\vee \\bar{x} = M$ y $x \\wedge \\bar{x} = m$."
+            },
+            {
+              "titulo": "Estrategia",
+              "contenido": "Demuestra que $x$ satisface las leyes del complemento respecto a $\\bar{x}$. Por unicidad, $x = \\bar{\\bar{x}}$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "$x$ es complemento de $\\bar{x}$",
+                "contenido": "Por definición de $\\bar{x}$: $x \\vee \\bar{x} = M$ y $x \\wedge \\bar{x} = m$. Pero estas mismas ecuaciones, intercambiando $x$ y $\\bar{x}$, dicen que $x$ es el complemento de $\\bar{x}$.",
+                "formula": "\\bar{x} \\vee x = M \\quad \\text{y} \\quad \\bar{x} \\wedge x = m"
+              },
+              {
+                "titulo": "Aplicar unicidad",
+                "contenido": "Como el complemento es único en una Álgebra de Boole (por ser distributiva), y $x$ es complemento de $\\bar{x}$, se tiene:",
+                "formula": "\\bar{\\bar{x}} = x"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.1-ej-03",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Demuestre el Lema 3.2: en un reticulado acotado y distributivo, si $x$ tiene complemento entonces es único.",
+          "tips": [
+            {
+              "titulo": "Supón dos complementos",
+              "contenido": "Sean $x_1$ y $x_2$ dos complementos de $x$. Debes probar $x_1 = x_2$."
+            },
+            {
+              "titulo": "Usa distributividad",
+              "contenido": "Escribe $x_1 = x_1 \\vee m$ y sustituye $m = x \\wedge x_2$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Primera cadena de igualdades",
+                "contenido": "Como $x_1$ es complemento de $x$: $x_1 \\vee x = M$ y $x_1 \\wedge x = m$. Como $x_2$ también es complemento: $x_2 \\vee x = M$ y $x_2 \\wedge x = m$.",
+                "formula": "x_1 = x_1 \\vee m = x_1 \\vee (x \\wedge x_2)"
+              },
+              {
+                "titulo": "Aplicar distributividad",
+                "contenido": "Por distributividad: $x_1 \\vee (x \\wedge x_2) = (x_1 \\vee x) \\wedge (x_1 \\vee x_2) = M \\wedge (x_1 \\vee x_2) = x_1 \\vee x_2$.",
+                "formula": "x_1 = (x_1 \\vee x) \\wedge (x_1 \\vee x_2) = M \\wedge (x_1 \\vee x_2) = x_1 \\vee x_2"
+              },
+              {
+                "titulo": "Simetría",
+                "contenido": "Análogamente, $x_2 = x_2 \\vee m = x_2 \\vee (x \\wedge x_1) = (x_2 \\vee x) \\wedge (x_2 \\vee x_1) = M \\wedge (x_2 \\vee x_1) = x_1 \\vee x_2$.",
+                "formula": "x_2 = x_1 \\vee x_2"
+              },
+              {
+                "titulo": "Conclusión",
+                "contenido": "Por tanto $x_1 = x_1 \\vee x_2 = x_2$.",
+                "formula": "x_1 = x_2"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "subtema_id": "3.2",
+      "titulo": "Definición abstracta y propiedades",
+      "teoria": {
+        "introduccion": "Además de la definición como reticulado, las Álgebras de Boole pueden definirse puramente algebraicas mediante un conjunto de axiomas. Esta perspectiva permite derivar todas las propiedades conocidas y revela el poderoso Principio de Dualidad.",
+        "definiciones": [
+          {
+            "nombre": "Axiomas de un Álgebra de Boole (Definición 3.4)",
+            "contenido": "Un Álgebra de Boole es un conjunto $B$ con dos operaciones binarias $+$ y $\\cdot$, elementos $0$ y $1$, y una operación unaria $\\bar{(\\cdot)}$, tales que para todo $x, y, z \\in B$: (1) **Neutros**: $x + 0 = x$, $x \\cdot 1 = x$; (2) **Complemento**: $x + \\bar{x} = 1$, $x \\cdot \\bar{x} = 0$; (3) **Asociativas**: $(x + y) + z = x + (y + z)$, $(x \\cdot y) \\cdot z = x \\cdot (y \\cdot z)$; (4) **Conmutativas**: $x + y = y + x$, $x \\cdot y = y \\cdot x$; (5) **Distributivas**: $x + (y \\cdot z) = (x + y) \\cdot (x + z)$, $x \\cdot (y + z) = (x \\cdot y) + (x \\cdot z)$.",
+            "nota": "Nota que las leyes distributivas vienen en pareja: cada una es la dual de la otra."
+          },
+          {
+            "nombre": "Dual de una expresión booleana",
+            "contenido": "El **dual** de una expresión booleana se obtiene intercambiando $+$ con $\\cdot$, y $0$ con $1$.",
+            "nota": "Por ejemplo, el dual de $x + (y \\cdot z)$ es $x \\cdot (y + z)$."
+          },
+          {
+            "nombre": "Principio de Dualidad (Teorema 3.1)",
+            "contenido": "A toda ley lógica le corresponde su dual, también como ley lógica.",
+            "nota": "Esto significa que si demostramos una propiedad, su dual está automáticamente demostrada."
+          }
+        ],
+        "ejemplos": [
+          {
+            "titulo": "Ejemplo 3.3 — Fórmulas proposicionales",
+            "descripcion": "El conjunto $B$ de todas las fórmulas proposicionales en $n$ variables, con $\\wedge$, $\\vee$, constantes $V$ (tautología) y $F$ (contradicción), y negación $\\neg$, forma un Álgebra de Boole.",
+            "items": [],
+            "observacion": "Aquí $+$ es $\\vee$, $\\cdot$ es $\\wedge$, $1$ es $V$, $0$ es $F$, y $\\bar{x}$ es $\\neg x$."
+          },
+          {
+            "titulo": "Ejemplo 3.4 — Álgebra de conjuntos",
+            "descripcion": "$[\\mathcal{P}(U), \\cap, \\cup, U, \\emptyset, ()^c]$ es Álgebra de Boole.",
+            "items": [],
+            "observacion": "Aquí $+$ es $\\cup$, $\\cdot$ es $\\cap$, $1$ es $U$, $0$ es $\\emptyset$, y $\\bar{A}$ es $A^c$."
+          }
+        ],
+        "lemas": [
+          {
+            "nombre": "Lema 3.3 — Propiedades derivadas",
+            "contenido": "En toda Álgebra de Boole se cumplen: (1) Doble complementación: $\\bar{\\bar{x}} = x$; (2) Idempotencia: $x + x = x$, $x \\cdot x = x$; (3) Acotación: $x + 1 = 1$, $x \\cdot 0 = 0$; (4) Absorción: $x + (x \\cdot y) = x$, $x \\cdot (x + y) = x$; (5) Leyes de De Morgan: $\\overline{x + y} = \\bar{x} \\cdot \\bar{y}$, $\\overline{x \\cdot y} = \\bar{x} + \\bar{y}$.",
+            "esquema_demostracion": "Todas se derivan de los axiomas. Por ejemplo, idempotencia: $x = x \\cdot 1 = x \\cdot (x + \\bar{x}) = (x \\cdot x) + (x \\cdot \\bar{x}) = (x \\cdot x) + 0 = x \\cdot x$."
+          },
+          {
+            "nombre": "Teorema 3.2 — Isomorfismo",
+            "contenido": "Toda Álgebra de Boole finita $[B, +, \\cdot, 1, 0, \\bar{()}]$ es isomorfa a $[\\mathcal{P}(X), \\cup, \\cap, X, \\emptyset, ()^c]$ para algún conjunto $X$.",
+            "esquema_demostracion": "Teorema de representación de Stone. Consecuencia: toda Álgebra de Boole finita tiene cardinalidad $2^n$."
+          }
+        ],
+        "nota_previa": "El Principio de Dualidad es una herramienta extremadamente poderosa: nos permite deducir la mitad de las propiedades 'gratis' una vez demostrada la otra mitad."
+      },
+      "ejercicios": [
+        {
+          "id": "3.2-ej-01",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Demuestre que en toda Álgebra de Boole se cumple $x + x = x$ (idempotencia de la suma).",
+          "tips": [
+            {
+              "titulo": "Empieza con $x = x \\cdot 1$",
+              "contenido": "Usa el elemento neutro del producto y la ley del complemento."
+            },
+            {
+              "titulo": "Distributividad",
+              "contenido": "$x \\cdot (x + \\bar{x}) = x \\cdot x + x \\cdot \\bar{x}$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Sustituir el 1",
+                "contenido": "$x = x \\cdot 1 = x \\cdot (x + \\bar{x})$ por la ley del complemento.",
+                "formula": "x = x \\cdot (x + \\bar{x})"
+              },
+              {
+                "titulo": "Aplicar distributividad",
+                "contenido": "$x \\cdot (x + \\bar{x}) = (x \\cdot x) + (x \\cdot \\bar{x}) = (x \\cdot x) + 0$.",
+                "formula": "= (x \\cdot x) + (x \\cdot \\bar{x}) = (x \\cdot x) + 0"
+              },
+              {
+                "titulo": "Simplificar",
+                "contenido": "$(x \\cdot x) + 0 = x \\cdot x$. Por tanto $x = x \\cdot x$. La demostración de $x + x = x$ es análoga (o por dualidad).",
+                "formula": "x = x \\cdot x \\quad \\text{y por dualidad} \\quad x = x + x"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.2-ej-02",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Demuestre la ley de acotación: $x + 1 = 1$ en toda Álgebra de Boole.",
+          "tips": [
+            {
+              "titulo": "Sustituye el 1",
+              "contenido": "$1 = x + \\bar{x}$ por la ley del complemento."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Sustituir",
+                "contenido": "$x + 1 = x + (x + \\bar{x})$ por la ley del complemento.",
+                "formula": "x + 1 = x + (x + \\bar{x})"
+              },
+              {
+                "titulo": "Asociatividad e idempotencia",
+                "contenido": "$x + (x + \\bar{x}) = (x + x) + \\bar{x} = x + \\bar{x} = 1$.",
+                "formula": "= (x + x) + \\bar{x} = x + \\bar{x} = 1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.2-ej-03",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Demuestre la primera ley de De Morgan: $\\overline{x + y} = \\bar{x} \\cdot \\bar{y}$.",
+          "tips": [
+            {
+              "titulo": "Verifica las leyes del complemento",
+              "contenido": "Para probar que $\\bar{x} \\cdot \\bar{y}$ es el complemento de $x + y$, verifica: $(x + y) + (\\bar{x} \\cdot \\bar{y}) = 1$ y $(x + y) \\cdot (\\bar{x} \\cdot \\bar{y}) = 0$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Primera ley del complemento",
+                "contenido": "$(x + y) \\cdot (\\bar{x} \\cdot \\bar{y}) = (x \\cdot \\bar{x} \\cdot \\bar{y}) + (y \\cdot \\bar{x} \\cdot \\bar{y}) = (0 \\cdot \\bar{y}) + (\\bar{x} \\cdot 0) = 0 + 0 = 0$.",
+                "formula": "(x + y) \\cdot (\\bar{x} \\cdot \\bar{y}) = 0"
+              },
+              {
+                "titulo": "Segunda ley del complemento",
+                "contenido": "$(x + y) + (\\bar{x} \\cdot \\bar{y}) = (x + y + \\bar{x}) \\cdot (x + y + \\bar{y}) = (1 + y) \\cdot (x + 1) = 1 \\cdot 1 = 1$.",
+                "formula": "(x + y) + (\\bar{x} \\cdot \\bar{y}) = 1"
+              },
+              {
+                "titulo": "Conclusión",
+                "contenido": "Como $\\bar{x} \\cdot \\bar{y}$ satisface ambas leyes del complemento respecto a $x + y$, y el complemento es único, se tiene:",
+                "formula": "\\overline{x + y} = \\bar{x} \\cdot \\bar{y}"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.2-ej-04",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Principio de cancelación: demuestre que si $x \\cdot y_1 = x \\cdot y_2$ y $x + y_1 = x + y_2$, entonces $y_1 = y_2$.",
+          "tips": [
+            {
+              "titulo": "Despeja $y_1$",
+              "contenido": "Escribe $y_1 = y_1 \\cdot (x + \\bar{x})$ y usa distributividad."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Expandir $y_1$",
+                "contenido": "$y_1 = y_1 \\cdot 1 = y_1 \\cdot (x + \\bar{x}) = (y_1 \\cdot x) + (y_1 \\cdot \\bar{x})$.",
+                "formula": "y_1 = (y_1 \\cdot x) + (y_1 \\cdot \\bar{x})"
+              },
+              {
+                "titulo": "Sustituir hipótesis",
+                "contenido": "Por hipótesis $y_1 \\cdot x = y_2 \\cdot x$. Además, $y_1 \\cdot \\bar{x} = y_1 \\cdot \\bar{x} \\cdot (x + \\bar{x}) = ...$ mejor: de $x + y_1 = x + y_2$, multiplicando por $\\bar{x}$: $\\bar{x} \\cdot (x + y_1) = \\bar{x} \\cdot (x + y_2)$, luego $\\bar{x} \\cdot y_1 = \\bar{x} \\cdot y_2$.",
+                "formula": "\\bar{x} \\cdot y_1 = \\bar{x} \\cdot y_2"
+              },
+              {
+                "titulo": "Conclusión",
+                "contenido": "$y_1 = (x \\cdot y_1) + (\\bar{x} \\cdot y_1) = (x \\cdot y_2) + (\\bar{x} \\cdot y_2) = y_2 \\cdot (x + \\bar{x}) = y_2$.",
+                "formula": "y_1 = y_2"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "subtema_id": "3.3",
+      "titulo": "Funciones booleanas y representación",
+      "teoria": {
+        "introduccion": "Como toda Álgebra de Boole finita es isomorfa a $[\\mathcal{P}(X), \\cup, \\cap, \\dots]$, podemos representarlas mediante el álgebra de n-uplas binarias. Esto nos lleva a las funciones booleanas, tablas de verdad, formas normales y técnicas de minimización.",
+        "definiciones": [
+          {
+            "nombre": "Álgebra de Boole binaria",
+            "contenido": "Sea $B = \\{0, 1\\}$ con operaciones: $1 + 1 = 1$, $1 + 0 = 1$, $0 + 1 = 1$, $0 + 0 = 0$ (OR); $1 \\cdot 1 = 1$, $1 \\cdot 0 = 0$, $0 \\cdot 1 = 0$, $0 \\cdot 0 = 0$ (AND); $\\bar{1} = 0$, $\\bar{0} = 1$ (NOT).",
+            "nota": "Esta es el Álgebra de Boole más pequeña posible (cardinalidad 2)."
+          },
+          {
+            "nombre": "Función booleana",
+            "contenido": "Una **función booleana de grado $n$** es una función $f: B^n \\to B$ donde $B = \\{0, 1\\}$.",
+            "nota": "Hay $2^{2^n}$ funciones booleanas de grado $n$."
+          },
+          {
+            "nombre": "Minitérmino (mintérmino)",
+            "contenido": "Un **literal** es una variable booleana $x_i$ o su complemento $\\bar{x_i}$. Un **minitérmino** en $x_1, \\dots, x_n$ es un producto booleano $y_1 \\cdot y_2 \\cdots y_n$ donde $y_i = x_i$ o $y_i = \\bar{x_i}$.",
+            "nota": "Un minitérmino vale 1 solo para una combinación específica de valores de las variables."
+          },
+          {
+            "nombre": "Forma Normal Disyuntiva (FND)",
+            "contenido": "La **FND** de una función booleana es la suma (OR) de los minitérminos correspondientes a las filas de la tabla de verdad donde la función vale 1.",
+            "nota": "Toda función booleana puede expresarse en FND. El conjunto $\\{+, \\cdot, \\bar{\\;}\\}$ es funcionalmente completo."
+          }
+        ],
+        "ejemplos": [
+          {
+            "titulo": "Ejemplo 3.5 — Función $F(x,y) = x \\cdot \\bar{y}$",
+            "descripcion": "Tabla de verdad:",
+            "items": [
+              "$F(1,1) = 1 \\cdot 0 = 0$",
+              "$F(1,0) = 1 \\cdot 1 = 1$",
+              "$F(0,1) = 0 \\cdot 0 = 0$",
+              "$F(0,0) = 0 \\cdot 1 = 0$"
+            ],
+            "observacion": "Solo vale 1 cuando $x=1$ e $y=0$."
+          },
+          {
+            "titulo": "Ejemplo 3.7 — Construcción de FND",
+            "descripcion": "Dada una tabla de verdad con $F=1$ en las filas $(1,1,0)$, $(1,0,1)$, $(0,1,0)$, $(0,0,1)$:",
+            "items": [
+              "Minitérmino para $(1,1,0)$: $x_1 \\cdot x_2 \\cdot \\bar{x_3}$",
+              "Minitérmino para $(1,0,1)$: $x_1 \\cdot \\bar{x_2} \\cdot x_3$",
+              "Minitérmino para $(0,1,0)$: $\\bar{x_1} \\cdot x_2 \\cdot \\bar{x_3}$",
+              "Minitérmino para $(0,0,1)$: $\\bar{x_1} \\cdot \\bar{x_2} \\cdot x_3$"
+            ],
+            "observacion": "La FND es: $F = x_1 x_2 \\bar{x_3} + x_1 \\bar{x_2} x_3 + \\bar{x_1} x_2 \\bar{x_3} + \\bar{x_1} \\bar{x_2} x_3$."
+          }
+        ],
+        "lemas": [
+          {
+            "nombre": "Cardinalidad de funciones booleanas",
+            "contenido": "Hay $2^{2^n}$ funciones booleanas de grado $n$.",
+            "esquema_demostracion": "$B^n$ tiene $2^n$ elementos. Una función $f: B^n \\to B$ asigna 0 o 1 a cada uno de esos $2^n$ elementos. Hay 2 opciones para cada uno: $2^{2^n}$ funciones totales."
+          },
+          {
+            "nombre": "Corolario 3.2 — Cardinalidad de Álgebras de Boole finitas",
+            "contenido": "La cardinalidad de cualquier Álgebra de Boole finita es $2^n$ para algún $n$.",
+            "esquema_demostracion": "Consecuencia directa del Teorema de representación (isomorfismo con $\\mathcal{P}(X)$ donde $|X| = n$)."
+          }
+        ],
+        "nota_previa": "La FND es útil para construir circuitos lógicos, pero generalmente no es minimal. Técnicas como los mapas de Karnaugh o el algoritmo de Quine-McCluskey permiten encontrar expresiones equivalentes con menos operaciones."
+      },
+      "ejercicios": [
+        {
+          "id": "3.3-ej-01",
+          "nivel": 1,
+          "etiquetas": [
+            "teoria",
+            "ejercicio"
+          ],
+          "enunciado": "Construya la tabla de verdad de la función booleana $F(x,y,z) = x \\cdot y \\cdot \\bar{z} + \\bar{x} \\cdot \\bar{y} \\cdot z$.",
+          "tips": [
+            {
+              "titulo": "Evalúa por partes",
+              "contenido": "Para cada fila, calcula primero $x \\cdot y \\cdot \\bar{z}$ y $\\bar{x} \\cdot \\bar{y} \\cdot z$, luego suma (OR)."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Tabla de verdad",
+                "contenido": "Evaluamos los 8 casos:",
+                "formula": "\\begin{array}{ccc|c|c|c} x & y & z & xy\\bar{z} & \\bar{x}\\bar{y}z & F \\\\ \\hline 1&1&1&0&0&0 \\\\ 1&1&0&1&0&1 \\\\ 1&0&1&0&0&0 \\\\ 1&0&0&0&0&0 \\\\ 0&1&1&0&0&0 \\\\ 0&1&0&0&0&0 \\\\ 0&0&1&0&1&1 \\\\ 0&0&0&0&0&0 \\end{array}"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.3-ej-02",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "¿Cuántas funciones booleanas de grado $n$ existen? Justifique.",
+          "tips": [
+            {
+              "titulo": "Conteo",
+              "contenido": "Una función booleana de grado $n$ asigna un valor en $\\{0,1\\}$ a cada elemento de $B^n$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Cardinalidad del dominio",
+                "contenido": "$B^n$ tiene $2^n$ elementos (todas las n-uplas de 0s y 1s).",
+                "formula": "|B^n| = 2^n"
+              },
+              {
+                "titulo": "Contar funciones",
+                "contenido": "Para cada uno de los $2^n$ elementos del dominio, hay 2 posibles valores (0 o 1). Por el principio de multiplicación:",
+                "formula": "\\text{Total de funciones} = 2^{2^n}"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.3-ej-03",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Halle la Forma Normal Disyuntiva de $F(x,y,z) = x + y + z$.",
+          "tips": [
+            {
+              "titulo": "Identifica las filas con $F=1$",
+              "contenido": "$x + y + z = 0$ solo cuando $x=y=z=0$. Por tanto, $F=1$ en las otras 7 filas."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Fila con $F=0$",
+                "contenido": "Solo $(0,0,0)$ da $F=0$. Todas las demás dan $F=1$.",
+                "formula": "F(0,0,0) = 0"
+              },
+              {
+                "titulo": "Minitérminos",
+                "contenido": "Los 7 minitérminos correspondientes a las filas con $F=1$ son: $xy\\bar{z}, x\\bar{y}z, x\\bar{y}\\bar{z}, \\bar{x}yz, \\bar{x}y\\bar{z}, \\bar{x}\\bar{y}z, x y z$.",
+                "formula": "F = xy\\bar{z} + x\\bar{y}z + x\\bar{y}\\bar{z} + \\bar{x}yz + \\bar{x}y\\bar{z} + \\bar{x}\\bar{y}z + xyz"
+              },
+              {
+                "titulo": "Simplificación alternativa",
+                "contenido": "Nota que $F = x + y + z$ ya está en una forma minimal. La FND es útil para construcción pero no siempre es la expresión más simple.",
+                "formula": "F = x + y + z \\quad \\text{(ya minimal)}"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.3-ej-04",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio"
+          ],
+          "enunciado": "Simplifique la expresión $F(x_1,x_2,x_3) = x_1 x_2 \\bar{x_3} + x_1 \\bar{x_2} x_3 + \\bar{x_1} x_2 \\bar{x_3} + \\bar{x_1} \\bar{x_2} x_3$ usando las leyes del Álgebra de Boole.",
+          "tips": [
+            {
+              "titulo": "Agrupa términos",
+              "contenido": "Agrupa los términos con $x_1$ y los términos con $\\bar{x_1}$."
+            },
+            {
+              "titulo": "Factoriza",
+              "contenido": "$x_1(x_2 \\bar{x_3} + \\bar{x_2} x_3) + \\bar{x_1}(x_2 \\bar{x_3} + \\bar{x_2} x_3)$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Factorizar por $x_1$ y $\\bar{x_1}$",
+                "contenido": "$F = x_1(x_2 \\bar{x_3} + \\bar{x_2} x_3) + \\bar{x_1}(x_2 \\bar{x_3} + \\bar{x_2} x_3)$.",
+                "formula": "F = x_1(x_2\\bar{x_3} + \\bar{x_2}x_3) + \\bar{x_1}(x_2\\bar{x_3} + \\bar{x_2}x_3)"
+              },
+              {
+                "titulo": "Factor común",
+                "contenido": "El factor $(x_2 \\bar{x_3} + \\bar{x_2} x_3)$ es común. Por distributividad:",
+                "formula": "F = (x_1 + \\bar{x_1})(x_2\\bar{x_3} + \\bar{x_2}x_3)"
+              },
+              {
+                "titulo": "Simplificar",
+                "contenido": "$x_1 + \\bar{x_1} = 1$, así que:",
+                "formula": "F = 1 \\cdot (x_2\\bar{x_3} + \\bar{x_2}x_3) = x_2\\bar{x_3} + \\bar{x_2}x_3"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
