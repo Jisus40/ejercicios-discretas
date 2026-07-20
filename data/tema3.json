@@ -560,6 +560,353 @@
           }
         }
       ]
+    },
+    {
+      "subtema_id": "3.4",
+      "titulo": "Ejercicios adicionales de Álgebras de Boole",
+      "teoria": {
+        "introduccion": "Esta sección recopila ejercicios adicionales de profundización sobre Álgebras de Boole, abarcando demostraciones de identidades, formas normales disyuntivas y conjuntivas, la función de Peirce y propiedades estructurales como la cardinalidad.",
+        "definiciones": [],
+        "ejemplos": [],
+        "lemas": [],
+        "nota_previa": "Estos ejercicios complementan los vistos en los subtemas anteriores y preparan para evaluaciones integrales. Se recomienda aplicar sistemáticamente los axiomas, el Principio de Dualidad y las leyes derivadas (De Morgan, absorción, idempotencia, etc.)."
+      },
+      "ejercicios": [
+        {
+          "id": "3.4-ej-01",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio",
+            "identidades"
+          ],
+          "enunciado": "Muestre que para cualesquiera elementos $a,b,c$ de un álgebra de Boole se cumplen las siguientes identidades:\n1. $(ac + bc')' = a'c + b'c'$\n2. $((a+c)(b+c'))' = (a'+c)(b'+c')$\n3. $(a+b)(a'+c) = ac + a'b$",
+          "tips": [
+            {
+              "titulo": "Leyes de De Morgan",
+              "contenido": "Recuerde que $(x+y)' = x' \\cdot y'$ y $(x \\cdot y)' = x' + y'$. Aplíquelas para descomponer los complementos de sumas y productos."
+            },
+            {
+              "titulo": "Distributividad y consenso",
+              "contenido": "Para el inciso 3, expanda el producto y use la ley de consenso: $xy + x'z + yz = xy + x'z$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Inciso 3 — Expansión directa",
+                "contenido": "Desarrollamos el lado izquierdo usando distributividad:",
+                "formula": "(a+b)(a'+c) = aa' + ac + ba' + bc = 0 + ac + a'b + bc"
+              },
+              {
+                "titulo": "Inciso 3 — Ley de consenso",
+                "contenido": "Por la ley de consenso, el término $bc$ es redundante ante la presencia de $ac$ y $a'b$:",
+                "formula": "ac + a'b + bc = ac + a'b \\implies (a+b)(a'+c) = ac + a'b"
+              },
+              {
+                "titulo": "Incisos 1 y 2",
+                "contenido": "Aplicar sistemáticamente De Morgan, distributividad y simplificación con $x \\cdot x' = 0$ para verificar las igualdades propuestas."
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-02",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio",
+            "identidades"
+          ],
+          "enunciado": "Muestre las siguientes identidades en cualquier álgebra de Boole:\n1. $(a+b)(a'+b) = b$\n2. $ab'd + a'bc = (ad+bc)(a'+b')$",
+          "tips": [
+            {
+              "titulo": "Inciso 1 — Factor común",
+              "contenido": "Agrupe $(a+a')$ como factor común usando distributividad inversa."
+            },
+            {
+              "titulo": "Inciso 2 — Expandir el lado derecho",
+              "contenido": "Desarrolle $(ad+bc)(a'+b')$ y compare término a término con el lado izquierdo."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Inciso 1",
+                "contenido": "Aplicando distributividad:",
+                "formula": "(a+b)(a'+b) = aa' + ab + a'b + bb = 0 + ab + a'b + b = (a+a')b + b = 1 \\cdot b + b = b + b = b"
+              },
+              {
+                "titulo": "Inciso 2 — Lado derecho",
+                "contenido": "Expandiendo el lado derecho:",
+                "formula": "(ad+bc)(a'+b') = ada' + adb' + a'bc + bcb' = 0 + adb' + a'bc + 0 = adb' + a'bc"
+              },
+              {
+                "titulo": "Inciso 2 — Comparación",
+                "contenido": "Notemos que $ab'd = adb'$ (conmutatividad). Por tanto ambos lados coinciden.",
+                "formula": "ab'd + a'bc = adb' + a'bc = (ad+bc)(a'+b')"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-03",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio",
+            "FND"
+          ],
+          "enunciado": "Halle la Forma Normal Disyuntiva de las siguientes expresiones:\n1. $F(x,y,z) = x + y + z$\n2. $F(x,y,z) = (x+z)y$",
+          "tips": [
+            {
+              "titulo": "FND de una suma",
+              "contenido": "Para $x+y+z$, recuerde que la FND se construye con los minitérminos donde la función vale 1."
+            },
+            {
+              "titulo": "FND de un producto",
+              "contenido": "Para $(x+z)y$, primero construya la tabla de verdad o aplique distributividad y luego complete los minitérminos."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Inciso 1 — Tabla de verdad",
+                "contenido": "$F(x,y,z)=x+y+z$ vale 0 únicamente en $(0,0,0)$. Por tanto la FND contiene los 7 minitérminos restantes.",
+                "formula": "F = xy\bar{z} + x\bar{y}z + x\bar{y}\bar{z} + \bar{x}yz + \bar{x}y\bar{z} + \bar{x}\bar{y}z + xyz"
+              },
+              {
+                "titulo": "Inciso 2 — Expansión",
+                "contenido": "Desarrollando: $(x+z)y = xy + zy = xy(z+\bar{z}) + (x+\bar{x})yz = xyz + xy\bar{z} + xyz + \bar{x}yz$",
+                "formula": "F = xyz + xy\bar{z} + \bar{x}yz"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-04",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio",
+            "FND"
+          ],
+          "enunciado": "Halle la Forma Normal Disyuntiva de la función booleana $F(x,y,z,w)$ que vale 1, si y sólo si, un número impar de variables entre $x,y,z,w$ toman el valor de 1.",
+          "tips": [
+            {
+              "titulo": "Número impar de unos",
+              "contenido": "Un número impar de unos significa que la función vale 1 cuando hay exactamente 1 o exactamente 3 variables en 1."
+            },
+            {
+              "titulo": "Conteo de filas",
+              "contenido": "Hay $\binom{4}{1}=4$ filas con un solo 1, y $\binom{4}{3}=4$ filas con tres unos."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Minitérminos con exactamente un 1",
+                "contenido": "Corresponden a las filas: $(1,0,0,0), (0,1,0,0), (0,0,1,0), (0,0,0,1)$.",
+                "formula": "x\bar{y}\bar{z}\bar{w} + \bar{x}y\bar{z}\bar{w} + \bar{x}\bar{y}z\bar{w} + \bar{x}\bar{y}\bar{z}w"
+              },
+              {
+                "titulo": "Minitérminos con exactamente tres 1s",
+                "contenido": "Corresponden a las filas: $(1,1,1,0), (1,1,0,1), (1,0,1,1), (0,1,1,1)$.",
+                "formula": "xyz\bar{w} + xy\bar{z}w + x\bar{y}zw + \bar{x}yzw"
+              },
+              {
+                "titulo": "FND completa",
+                "contenido": "Sumando ambos grupos de minitérminos se obtiene la FND:",
+                "formula": "F = x\bar{y}\bar{z}\bar{w} + \bar{x}y\bar{z}\bar{w} + \bar{x}\bar{y}z\bar{w} + \bar{x}\bar{y}\bar{z}w + xyz\bar{w} + xy\bar{z}w + x\bar{y}zw + \bar{x}yzw"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-05",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio",
+            "contraejemplo"
+          ],
+          "enunciado": "De un ejemplo de un álgebra de Boole en la cual existan tres elementos $a,b$ y $c$ que satisfagan las siguientes condiciones:\n1. $ab = ac$, pero $b \neq c$\n2. $a+b = a+c$, pero $b \neq c$",
+          "tips": [
+            {
+              "titulo": "Álgebra de conjuntos",
+              "contenido": "Considere $[\\mathcal{P}(S), \\cap, \\cup]$ con $|S| \\geq 2$."
+            },
+            {
+              "titulo": "Elección de elementos",
+              "contenido": "Busque conjuntos donde la intersección con $a$ 'pierda' la información que distingue a $b$ de $c$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Elección del universo",
+                "contenido": "Sea $U = \\{1,2\\}$ y considere el álgebra $[\\mathcal{P}(U), \\cup, \\cap, U, \\emptyset, ()^c]$."
+              },
+              {
+                "titulo": "Inciso 1 — Intersección",
+                "contenido": "Tome $a = \\{1\\}$, $b = \\{1,2\\}$, $c = \\{1\\}$. Entonces $ab = a \\cap b = \\{1\\} = a \\cap c = ac$, pero $b = \\{1,2\\} \\neq \\{1\\} = c$. (Nota: ajustando para $b \\neq c$ use $b=\\{1\\}, c=\\{1,2\\}$... mejor: $a=\\emptyset, b=\\{1\\}, c=\\{2\\}$ da $ab=ac=\\emptyset$).",
+                "formula": "a = \\emptyset,\\; b = \\{1\\},\\; c = \\{2\\} \\implies ab = ac = \\emptyset,\\; b \\neq c"
+              },
+              {
+                "titulo": "Inciso 2 — Unión",
+                "contenido": "Con $a = U = \\{1,2\\}$, $b = \\{1\\}$, $c = \\{2\\}$: $a+b = a+c = U$ pero $b \\neq c$.",
+                "formula": "a = \\{1,2\\},\\; b = \\{1\\},\\; c = \\{2\\} \\implies a+b = a+c = \\{1,2\\},\\; b \\neq c"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-06",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio",
+            "FNC",
+            "maxterminos"
+          ],
+          "enunciado": "Un maxitérmino o maxtérmino en las variables booleanas $x_1, x_2, \\dots, x_n$ es una suma booleana de literales, es decir, una suma booleana $y_1 + y_2 + \\dots + y_n$ donde $y_i = x_i$ o $y_i = \\bar{x_i}$. Demuestre que cualquier expresión booleana puede escribirse como un producto de maxtérminos. A esto se le conoce como Forma Normal Conjuntiva (FNC), y a veces es conveniente cuando el número de ceros en $F(x_1, x_2, \\dots, x_n)$ supera al número de unos.",
+          "tips": [
+            {
+              "titulo": "Dualidad FND-FNC",
+              "contenido": "Aplique el Principio de Dualidad a la construcción de la FND: en lugar de sumar los minitérminos donde $F=1$, multiplique los maxtérminos donde $F=0$."
+            },
+            {
+              "titulo": "Complemento de minitérminos",
+              "contenido": "Un maxtérmino es el complemento de un minitérmino (salvo por De Morgan). Use que $F = \\prod_{F=0} M_i$ donde $M_i$ es el maxtérmino correspondiente."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Idea central",
+                "contenido": "Sea $f: B^n \\to B$. Para cada fila donde $f=0$ con valores $(a_1, \\dots, a_n)$, construimos el maxtérmino $M = y_1 + \\dots + y_n$ donde $y_i = x_i$ si $a_i = 0$ y $y_i = \\bar{x_i}$ si $a_i = 1$."
+              },
+              {
+                "titulo": "Propiedad del maxtérmino",
+                "contenido": "Este maxtérmino vale 0 exactamente en la fila $(a_1, \\dots, a_n)$ y vale 1 en todas las demás."
+              },
+              {
+                "titulo": "Producto de maxtérminos",
+                "contenido": "El producto (AND) de todos los maxtérminos asociados a filas con $f=0$ vale 0 exactamente en esas filas y 1 en el resto, reproduciendo así la función $f$.",
+                "formula": "F = \\prod_{F(a_1,\\dots,a_n)=0} \\big( \\sum_{i=1}^n y_i \\big)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-07",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio",
+            "Peirce",
+            "funcionalmente-completo"
+          ],
+          "enunciado": "En cualquier álgebra de Boole, definimos la función de Peirce (en honor al lógico C.S. Peirce) como $f \\downarrow g = f' \\cdot g'$. Muestre que cualquier expresión booleana $f(x_1, x_2, \\dots, x_n)$ puede ser expresada en términos de la función de Peirce.",
+          "tips": [
+            {
+              "titulo": "Funcionalmente completo",
+              "contenido": "Basta demostrar que $\\{\\downarrow\\}$ puede simular $\\{+, \\cdot, '\\}$ (o cualquier conjunto funcionalmente completo como $\\{+, '\\}$ o $\\{\\cdot, '\\}$)."
+            },
+            {
+              "titulo": "Expresar NOT, AND y OR",
+              "contenido": "Observe que $x \\downarrow x = x'$, luego $x' = x \\downarrow x$. A partir de ahí derive $x+y$ y $x\\cdot y$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Negación",
+                "contenido": "Tomando $f = g = x$:",
+                "formula": "x \\downarrow x = x' \\cdot x' = x'"
+              },
+              {
+                "titulo": "OR",
+                "contenido": "Usando De Morgan: $x + y = (x' \\cdot y')' = (x \\downarrow y)' = (x \\downarrow y) \\downarrow (x \\downarrow y)$.",
+                "formula": "x + y = (x \\downarrow y) \\downarrow (x \\downarrow y)"
+              },
+              {
+                "titulo": "AND",
+                "contenido": "De forma similar: $x \\cdot y = (x' + y')' = (x \\downarrow x) \\downarrow (y \\downarrow y)$.",
+                "formula": "x \\cdot y = (x \\downarrow x) \\downarrow (y \\downarrow y)"
+              },
+              {
+                "titulo": "Conclusión",
+                "contenido": "Como $\\{+, \\cdot, '\\}$ es funcionalmente completo y cada operación puede expresarse con $\\downarrow$, cualquier función booleana puede construirse únicamente con la función de Peirce."
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-08",
+          "nivel": 3,
+          "etiquetas": [
+            "ejercicio",
+            "Peirce"
+          ],
+          "enunciado": "Exprese $ab' + a'bc$ solamente utilizando la función de Peirce ($\\downarrow$).",
+          "tips": [
+            {
+              "titulo": "Sustitución paso a paso",
+              "contenido": "Reemplace primero cada complemento $x'$ por $x \\downarrow x$, luego cada suma $x+y$ por $(x \\downarrow y) \\downarrow (x \\downarrow y)$, y cada producto $x\\cdot y$ por $(x \\downarrow x) \\downarrow (y \\downarrow y)$."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Complementos",
+                "contenido": "$b' = b \\downarrow b$ y $a' = a \\downarrow a$.",
+                "formula": "b' = b \\downarrow b,\\quad a' = a \\downarrow a"
+              },
+              {
+                "titulo": "Productos",
+                "contenido": "$ab' = (a \\downarrow a) \\downarrow (b' \\downarrow b') = (a \\downarrow a) \\downarrow ((b \\downarrow b) \\downarrow (b \\downarrow b))$. Análogamente para $a'bc$.",
+                "formula": "ab' = (a \\downarrow a) \\downarrow ((b \\downarrow b) \\downarrow (b \\downarrow b))"
+              },
+              {
+                "titulo": "Suma final",
+                "contenido": "La suma $ab' + a'bc$ se reemplaza por la fórmula de OR con $\\downarrow$:",
+                "formula": "ab' + a'bc = \\big((ab') \\downarrow (a'bc)\\big) \\downarrow \\big((ab') \\downarrow (a'bc)\\big)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3.4-ej-09",
+          "nivel": 2,
+          "etiquetas": [
+            "ejercicio",
+            "cardinalidad",
+            "teoria"
+          ],
+          "enunciado": "Muestre que no puede haber un Álgebra de Boole de 3 elementos.",
+          "tips": [
+            {
+              "titulo": "Teorema de representación",
+              "contenido": "Use el Teorema 3.2 (Stone): toda álgebra de Boole finita es isomorfa a $[\\mathcal{P}(X), \\cup, \\cap, \\dots]$ para algún $X$ finito."
+            },
+            {
+              "titulo": "Cardinalidad potencia de 2",
+              "contenido": "Si $|X| = n$, entonces $|\\mathcal{P}(X)| = 2^n$. Por tanto toda álgebra de Boole finita tiene cardinalidad potencia de 2."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Cardinalidad de álgebras finitas",
+                "contenido": "Por el Teorema de representación de Stone, toda álgebra de Boole finita $B$ es isomorfa al álgebra de partes $\\mathcal{P}(X)$ de algún conjunto $X$ con $|X| = n$."
+              },
+              {
+                "titulo": "Cálculo",
+                "contenido": "La cardinalidad de $\\mathcal{P}(X)$ es $2^n$. Por tanto $|B| = 2^n$ para algún $n \\geq 0$."
+              },
+              {
+                "titulo": "Conclusión",
+                "contenido": "Como $3$ no es una potencia de 2, no existe ningún $n$ tal que $2^n = 3$. En consecuencia, no puede existir un Álgebra de Boole de 3 elementos.",
+                "formula": "\\nexists n \\in \\mathbb{N} : 2^n = 3 \\implies \\nexists B : |B| = 3"
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
