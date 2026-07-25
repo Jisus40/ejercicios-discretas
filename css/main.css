@@ -308,7 +308,7 @@ h4 {
 }
 
 .definicion-titulo {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--accent);
     text-transform: uppercase;
@@ -316,16 +316,16 @@ h4 {
     margin-bottom: 8px;
 }
 
-.definicion p, .definicion .formula-block {
-    font-size: 1rem;
+.definicion p,
+.definicion .formula-block,
+.definicion .nota {
+    font-size: 1.4rem;
     color: var(--text-secondary);
     line-height: 1.7;
 }
 
 .definicion .nota {
     margin-top: 8px;
-    font-size: 0.95rem;
-    color: var(--text-muted);
     font-style: italic;
 }
 
@@ -341,19 +341,28 @@ h4 {
 }
 
 .ejemplo-titulo {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 8px;
 }
 
-.ejemplo p, .ejemplo ol, .ejemplo ul {
-    font-size: 1rem;
+.ejemplo p,
+.ejemplo li,
+.ejemplo .observacion {
+    font-size: 1.4rem;
     color: var(--text-secondary);
     line-height: 1.7;
 }
 
-.ejemplo ol, .ejemplo ul { margin-left: 20px; margin-top: 6px; }
+.ejemplo ol,
+.ejemplo ul {
+    margin-left: 20px;
+    margin-top: 6px;
+    font-size: 1.4rem;
+    line-height: 1.7;
+}
+
 .ejemplo li { margin-bottom: 4px; }
 
 .ejemplo .observacion {
@@ -362,8 +371,6 @@ h4 {
     background: var(--accent-soft);
     border-left: 3px solid var(--accent);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
 }
 
 /* ============================================================
@@ -379,14 +386,14 @@ h4 {
 }
 
 .lema-titulo {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--warning);
     margin-bottom: 8px;
 }
 
 .lema p {
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: var(--text-secondary);
     line-height: 1.7;
 }
@@ -413,10 +420,13 @@ h4 {
     padding: 16px 18px;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     margin-bottom: 20px;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
 }
 
-.enunciado p { margin-bottom: 10px; }
+.enunciado p {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
 .enunciado p:last-child { margin-bottom: 0; }
 .enunciado ol, .enunciado ul {
     margin-left: 20px;
@@ -498,7 +508,7 @@ h4 {
 .tip-body {
     padding: 0 16px 14px;
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.65;
     display: none;
 }
@@ -594,7 +604,7 @@ h4 {
 }
 
 .paso p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 6px;
@@ -873,6 +883,16 @@ a:hover { text-decoration: underline; }
     .card { padding: 18px; }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
     .hasse-svg { max-width: 280px; }
+    /* Ajuste de tamaños en móvil */
+    .definicion p,
+    .definicion .formula-block,
+    .definicion .nota,
+    .ejemplo p,
+    .ejemplo li,
+    .ejemplo .observacion,
+    .lema p {
+        font-size: 1.2rem;
+    }
 }
 
 /* Nota previa / reflexión al final de teoría */
