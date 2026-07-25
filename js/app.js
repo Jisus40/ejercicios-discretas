@@ -41,7 +41,6 @@ function cargarTema() {
     const temaId = params.get('tema') || 'tema1';
     AppState.temaId = temaId;
 
-    // Mostrar loading en la vista de subtemas
     const container = document.getElementById('subtemas-content');
     if (container) {
         container.innerHTML = '<div class="loading">Cargando tema</div>';
@@ -94,6 +93,23 @@ function renderizarKaTeX() {
 }
 
 // ================================================================
+// UTILIDAD: Formateo de texto (escape + negritas)
+// ================================================================
+
+function formatearTexto(texto) {
+    if (!texto) return '';
+    const escapado = escapeHtml(texto);
+    return escapado.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ================================================================
 // VISTA: SUBTEMAS DEL TEMA
 // ================================================================
 
@@ -104,8 +120,8 @@ function mostrarVistaSubtemas() {
 
     let html = `
         <div class="subtema-header">
-            <h1>${escapeHtml(data.titulo)}</h1>
-            <p class="subtitle">${escapeHtml(data.descripcion)}</p>
+            <h1>${formatearTexto(data.titulo)}</h1>
+            <p class="subtitle">${formatearTexto(data.descripcion)}</p>
         </div>
         <h2>Selecciona un subtema</h2>
         <div class="grid-2">
@@ -117,7 +133,7 @@ function mostrarVistaSubtemas() {
             <div class="card card-interactive" onclick="seleccionarSubtema('${sub.subtema_id}')">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
                     <span style="padding:4px 10px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:700;">${escapeHtml(sub.subtema_id)}</span>
-                    <span style="font-size:16px; font-weight:600; color:var(--text);">${escapeHtml(sub.titulo)}</span>
+                    <span style="font-size:16px; font-weight:600; color:var(--text);">${formatearTexto(sub.titulo)}</span>
                 </div>
                 <p style="font-size:14px; color:var(--text-secondary); margin:0 0 8px 0;">${sub.ejercicios.length} ejercicios</p>
                 <div class="progress-bar">
@@ -155,12 +171,12 @@ function renderSubtema(subtema) {
     let html = `
         <div class="subtema-header">
             <div class="subtema-numero">${escapeHtml(subtema.subtema_id)}</div>
-            <h1>${escapeHtml(subtema.titulo)}</h1>
+            <h1>${formatearTexto(subtema.titulo)}</h1>
         </div>
     `;
 
     if (teoria.introduccion) {
-        html += `<p class="intro-text">${teoria.introduccion}</p>`;
+        html += `<p class="intro-text">${formatearTexto(teoria.introduccion)}</p>`;
     }
 
     if (teoria.definiciones?.length) {
@@ -168,9 +184,9 @@ function renderSubtema(subtema) {
         teoria.definiciones.forEach(def => {
             html += `
                 <div class="definicion">
-                    <div class="definicion-titulo">${escapeHtml(def.nombre)}</div>
-                    <p>${def.contenido}</p>
-                    ${def.nota ? `<div class="nota">💡 ${def.nota}</div>` : ''}
+                    <div class="definicion-titulo">${formatearTexto(def.nombre)}</div>
+                    <p>${formatearTexto(def.contenido)}</p>
+                    ${def.nota ? `<div class="nota">💡 ${formatearTexto(def.nota)}</div>` : ''}
                 </div>
             `;
         });
@@ -181,9 +197,9 @@ function renderSubtema(subtema) {
         teoria.lemas.forEach(lema => {
             html += `
                 <div class="lema">
-                    <div class="lema-titulo">${escapeHtml(lema.nombre)}</div>
-                    <p>${lema.contenido}</p>
-                    ${lema.esquema_demostracion ? `<p style="margin-top:8px; font-style:italic; color:var(--text-muted);"><strong>Idea:</strong> ${lema.esquema_demostracion}</p>` : ''}
+                    <div class="lema-titulo">${formatearTexto(lema.nombre)}</div>
+                    <p>${formatearTexto(lema.contenido)}</p>
+                    ${lema.esquema_demostracion ? `<p style="margin-top:8px; font-style:italic; color:var(--text-muted);"><strong>Idea:</strong> ${formatearTexto(lema.esquema_demostracion)}</p>` : ''}
                 </div>
             `;
         });
@@ -193,10 +209,10 @@ function renderSubtema(subtema) {
         html += `<h2>💡 Ejemplos</h2>`;
         teoria.ejemplos.forEach((ej, i) => {
             html += `<div class="ejemplo">`;
-            html += `<div class="ejemplo-titulo">${escapeHtml(ej.titulo)}</div>`;
-            html += `<p>${ej.descripcion}</p>`;
+            html += `<div class="ejemplo-titulo">${formatearTexto(ej.titulo)}</div>`;
+            html += `<p>${formatearTexto(ej.descripcion)}</p>`;
             if (ej.items?.length) {
-                html += `<ul>${ej.items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                html += `<ul>${ej.items.map(item => `<li>${formatearTexto(item)}</li>`).join('')}</ul>`;
             }
             if (ej.diagrama) {
                 const diagramaId = `hasse-${subtema.subtema_id}-${i}`;
@@ -205,18 +221,18 @@ function renderSubtema(subtema) {
                 setTimeout(() => renderHasse(diagramaId, ej.diagrama), 0);
             }
             if (ej.observacion) {
-                html += `<div class="observacion">${ej.observacion}</div>`;
+                html += `<div class="observacion">${formatearTexto(ej.observacion)}</div>`;
             }
             html += `</div>`;
         });
     }
 
     if (teoria.notacion) {
-        html += `<div class="card" style="margin-top:20px;"><p style="margin:0; font-size:14px; color:var(--text-secondary);"><strong>Notación:</strong> ${teoria.notacion}</p></div>`;
+        html += `<div class="card" style="margin-top:20px;"><p style="margin:0; font-size:14px; color:var(--text-secondary);"><strong>Notación:</strong> ${formatearTexto(teoria.notacion)}</p></div>`;
     }
 
     if (teoria.nota_previa) {
-        html += `<div class="card nota-previa" style="margin-top:20px; border-left:3px solid var(--warning);"><p style="margin:0; color:var(--text-secondary);">🤔 <strong>Para reflexionar:</strong> ${teoria.nota_previa}</p></div>`;
+        html += `<div class="card nota-previa" style="margin-top:20px; border-left:3px solid var(--warning);"><p style="margin:0; color:var(--text-secondary);">🤔 <strong>Para reflexionar:</strong> ${formatearTexto(teoria.nota_previa)}</p></div>`;
     }
 
     html += `
@@ -248,7 +264,6 @@ function irASubtemaActual() {
     if (subtema) {
         renderSubtema(subtema);
         mostrarVista('vista-subtema');
-        // Restaurar posición de scroll si existe
         if (AppState.scrollSubtema !== undefined) {
             setTimeout(() => {
                 window.scrollTo(0, AppState.scrollSubtema);
@@ -283,9 +298,9 @@ function renderEjercicio(ej, num, subtema) {
 
     let html = `
         <nav class="breadcrumb">
-            <span>${escapeHtml(AppState.temaData.titulo)}</span>
+            <span>${formatearTexto(AppState.temaData.titulo)}</span>
             <span>›</span>
-            <span>${escapeHtml(subtema.subtema_id)} ${escapeHtml(subtema.titulo)}</span>
+            <span>${escapeHtml(subtema.subtema_id)} ${formatearTexto(subtema.titulo)}</span>
             <span>›</span>
             <span class="current">Ejercicio ${num}</span>
         </nav>
@@ -294,7 +309,7 @@ function renderEjercicio(ej, num, subtema) {
             <div class="card-header">
                 <div>
                     <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:4px;">Ejercicio ${num}</div>
-                    <h1 style="font-size:1.3rem;">${escapeHtml(ej.enunciado.replace(/\$\$.*?\$\$/g, '').replace(/\$.*?\$/g, '').substring(0, 80).trim())}${ej.enunciado.replace(/\$\$.*?\$\$/g, '').replace(/\$.*?\$/g, '').length > 80 ? '...' : ''}</h1>
+                    <h1 style="font-size:1.3rem;">${formatearTexto(ej.enunciado.replace(/\$\$.*?\$\$/g, '').replace(/\$.*?\$/g, '').substring(0, 80).trim())}${ej.enunciado.replace(/\$\$.*?\$\$/g, '').replace(/\$.*?\$/g, '').length > 80 ? '...' : ''}</h1>
                 </div>
                 <div class="tags">
                     ${ej.etiquetas.map(et => `<span class="tag tag-${et === 'teoria' ? 'teoria' : 'ejercicio'}">${et === 'teoria' ? 'teoría' : escapeHtml(et)}</span>`).join('')}
@@ -304,7 +319,7 @@ function renderEjercicio(ej, num, subtema) {
 
             <div class="enunciado">
                 <p><strong>Enunciado:</strong></p>
-                <p>${ej.enunciado}</p>
+                <p>${formatearTexto(ej.enunciado)}</p>
             </div>
     `;
 
@@ -314,10 +329,10 @@ function renderEjercicio(ej, num, subtema) {
             html += `
                 <div class="tip-box" onclick="this.classList.toggle('open')">
                     <button class="tip-header">
-                        <span>💡 ${escapeHtml(tip.titulo)}</span>
+                        <span>💡 ${formatearTexto(tip.titulo)}</span>
                         <span class="tip-icon">+</span>
                     </button>
-                    <div class="tip-body">${tip.contenido}</div>
+                    <div class="tip-body">${formatearTexto(tip.contenido)}</div>
                 </div>
             `;
         });
@@ -338,9 +353,9 @@ function renderEjercicio(ej, num, subtema) {
             <div class="paso">
                 <div class="paso-titulo">
                     <span class="paso-numero">${i + 1}</span>
-                    ${escapeHtml(paso.titulo)}
+                    ${formatearTexto(paso.titulo)}
                 </div>
-                <p>${paso.contenido}</p>
+                <p>${formatearTexto(paso.contenido)}</p>
                 ${paso.formula ? `<div class="formula-block">$$${paso.formula}$$</div>` : ''}
             </div>
         `;
@@ -446,7 +461,6 @@ function renderHasse(containerId, diagrama) {
         const colorStroke = esDestacado ? 'var(--accent)' : 'var(--border-light)';
         const strokeWidth = esDestacado ? 2.5 : 1.5;
         const fontWeight = esDestacado ? 600 : 500;
-        // Reemplazar \emptyset por el símbolo Unicode ∅
         const etiqueta = n.etiqueta.replace(/\\emptyset/g, '∅');
 
         svg += `<circle cx="${p.x}" cy="${p.y}" r="22" fill="var(--bg-card)" stroke="${colorStroke}" stroke-width="${strokeWidth}"/>`;
@@ -532,15 +546,4 @@ function calcularProgresoSubtema(subtemaId) {
         return AppState.progreso[subtemaId]?.[ej.id]?.visto;
     }).length;
     return Math.round((vistos / total) * 100);
-}
-
-// ================================================================
-// UTILIDADES
-// ================================================================
-
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
 }
