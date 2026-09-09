@@ -377,10 +377,10 @@ function renderEjercicio(ej, num, subtema) {
     } else {
         html += `
             <div class="evaluacion-wrapper" id="eval-${ej.id}" style="display:none; margin-top:16px;">
-                <p style="color:var(--text-secondary); font-size:14px; margin-bottom:12px; text-align:center;">¿Tu solución coincide con la del sistema?</p>
+                <p style="color:var(--text-secondary); font-size:14px; margin-bottom:12px; text-align:center;">¿Lograste resolverlo?</p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button class="btn-eval btn-correcto" onclick="marcarEjercicioCompletado('${ej.id}', true)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--success); color:#fff; font-weight:600; cursor:pointer;">✅ Sí, coincide</button>
-                    <button class="btn-eval btn-incorrecto" onclick="marcarEjercicioCompletado('${ej.id}', false)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--danger); color:#fff; font-weight:600; cursor:pointer;">❌ No coincide</button>
+                    <button class="btn-eval btn-correcto" onclick="marcarEjercicioCompletado('${ej.id}', true)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--success); color:#fff; font-weight:600; cursor:pointer;">✅ Sí </button>
+                    <button class="btn-eval btn-incorrecto" onclick="marcarEjercicioCompletado('${ej.id}', false)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--danger); color:#fff; font-weight:600; cursor:pointer;">❌ No </button>
                 </div>
             </div>
         `;
