@@ -23,7 +23,7 @@
         "ejemplos": [
           {
             "titulo": "Ejemplo 1.1 — Orden por divisibilidad en $\\mathbb{Z}^+$",
-            "descripcion": "Sea $[\\mathbb{Z}^+, \\preceq]$ donde $x \\preceq y \\iff x \\mid y$ (es decir, $y$ es múltiplo de $x$). Si $S = \\{a, b\\}$:",
+            "descripcion": "Sea $[\\mathbb{Z}^+, \\preceq]$ donde la relación $\\preceq$ está definida para todo $x, y \\in \\mathbb{Z}^+$ de la siguiente manera: $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$ (es decir, $y$ es múltiplo de $x$). Si $S = \\{a, b\\}$:",
             "items": [
               "$C_I(S)$ es el conjunto de los **divisores comunes** de $a$ y $b$.",
               "$C_S(S)$ es el conjunto de los **múltiplos comunes** de $a$ y $b$."
@@ -180,11 +180,11 @@
           "etiquetas": [
             "ejercicio"
           ],
-          "enunciado": "Sea $[\\mathbb{Z}^+, \\preceq]$ con $x \\preceq y \\iff x \\mid y$. Sea $S = \\{6, 10\\}$. Determine $C_I(S)$ y $C_S(S)$.",
+          "enunciado": "Sea $[\\mathbb{Z}^+, \\preceq]$ con $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$ (es decir, $x \\mid y$). Sea $S = \\{6, 10\\}$. Determine $C_I(S)$ y $C_S(S)$.",
           "tips": [
             {
               "titulo": "Traduce a lenguaje aritmético",
-              "contenido": "En este orden, $c \\preceq x$ significa $c \\mid x$. Así que las cotas inferiores son los divisores comunes de 6 y 10."
+              "contenido": "En este orden, $c \\preceq x$ significa $\\exists k \\in \\mathbb{Z} : x = kc$, es decir, $c \\mid x$. Así que las cotas inferiores son los divisores comunes de 6 y 10."
             }
           ],
           "solucion": {
@@ -237,11 +237,11 @@
             "ejercicio",
             "nuevo"
           ],
-          "enunciado": "En $[\\mathbb{Z}^+, \\mid]$, sea $S = \\{12, 18\\}$. Determine $C_I(S)$, $C_S(S)$, $\\inf(S)$ y $\\sup(S)$.",
+          "enunciado": "Sea $[\\mathbb{Z}^+, \\preceq]$ con $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$ (es decir, $x \\mid y$). Sea $S = \\{12, 18\\}$. Determine $C_I(S)$, $C_S(S)$, $\\inf(S)$ y $\\sup(S)$.",
           "tips": [
             {
               "titulo": "Conexión con aritmética",
-              "contenido": "Recuerda: en este orden, las cotas inferiores son divisores comunes y las cotas superiores son múltiplos comunes."
+              "contenido": "Recuerda: en este orden, las cotas inferiores son divisores comunes ($\\exists k \\in \\mathbb{Z} : x = kc$) y las cotas superiores son múltiplos comunes."
             },
             {
               "titulo": "Factorización prima",
@@ -323,6 +323,10 @@
             "nombre": "Supremo",
             "contenido": "Una cota superior $c \\in C_S(S)$ se denomina **supremo** de $S$ si $\\forall x \\in C_S(S) : c \\preceq x$. Es decir, el supremo es la **menor** de las cotas superiores. Se denota $c = \\sup(S)$.",
             "nota": "El supremo también es único cuando existe."
+          },
+          {
+            "nombre": "Nota 1.1 — Notación del ínfimo y supremo",
+            "contenido": "En ocasiones, por simplicidad, al ínfimo $\\inf(\\{x,y\\})$ se le denota como $\\inf\\{x,y\\}$, o incluso $\\inf(x,y)$. Igual pasa con el supremo."
           }
         ],
         "lemas": [
@@ -344,7 +348,7 @@
           },
           {
             "titulo": "Ejemplo 1.4 — Divisibilidad en $\\mathbb{Z}^+$",
-            "descripcion": "En $[\\mathbb{Z}^+, \\mid]$ con $S = \\{a, b\\}$:",
+            "descripcion": "En $[\\mathbb{Z}^+, \\preceq]$ donde $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$, con $S = \\{a, b\\}$:",
             "items": [
               "$\\inf(\\{a,b\\}) = \\gcd(a,b)$ (Máximo Común Divisor).",
               "$\\sup(\\{a,b\\}) = \\operatorname{mcm}(a,b)$ (Mínimo Común Múltiplo)."
@@ -394,11 +398,11 @@
           "etiquetas": [
             "ejercicio"
           ],
-          "enunciado": "En $[\\mathbb{Z}^+, \\mid]$, calcule $\\inf(\\{12, 18\\})$ y $\\sup(\\{12, 18\\})$.",
+          "enunciado": "Sea $[\\mathbb{Z}^+, \\preceq]$ con $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$ (es decir, $x \\mid y$). Calcule $\\inf(\\{12, 18\\})$ y $\\sup(\\{12, 18\\})$.",
           "tips": [
             {
               "titulo": "Conexión con aritmética",
-              "contenido": "Recuerda: en este orden, $\\inf = \\gcd$ y $\\sup = \\operatorname{mcm}$."
+              "contenido": "Recuerda: en este orden, $\\inf = \\gcd$ y $\\sup = \\operatorname{mcm}$, ya que $x \\preceq y \\iff \\exists k \\in \\mathbb{Z} : y = kx$."
             }
           ],
           "solucion": {
@@ -868,7 +872,7 @@
           "etiquetas": [
             "ejercicio"
           ],
-          "enunciado": "En $[\\mathbb{Z}^+, \\mid]$, sea $S = \\{n \\in \\mathbb{Z}^+ : n \\mid 60\\}$. Halle el máximo, mínimo, maximales y minimales de $S$.",
+          "enunciado": "Sea $[\\mathbb{Z}^+, \\preceq]$ con $x \\preceq y$ si y sólo si $\\exists k \\in \\mathbb{Z} : y = kx$ (es decir, $x \\mid y$). Sea $S = \\{n \\in \\mathbb{Z}^+ : n \\mid 60\\}$. Halle el máximo, mínimo, maximales y minimales de $S$.",
           "tips": [
             {
               "titulo": "Lista los divisores",
