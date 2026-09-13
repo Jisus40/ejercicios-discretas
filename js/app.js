@@ -133,9 +133,9 @@ function mostrarVistaSubtemas() {
             <div class="card card-interactive" onclick="seleccionarSubtema('${sub.subtema_id}')">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
                     <span style="padding:4px 10px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:700;">${escapeHtml(sub.subtema_id)}</span>
-                    <span style="font-size:16px; font-weight:600; color:var(--text);">${formatearTexto(sub.titulo)}</span>
+                    <span style="font-size:19px; font-weight:600; color:var(--text);">${formatearTexto(sub.titulo)}</span>
                 </div>
-                <p style="font-size:14px; color:var(--text-secondary); margin:0 0 8px 0;">${sub.ejercicios.length} ejercicios</p>
+                <p style="font-size:17px; color:var(--text-secondary); margin:0 0 8px 0;">${sub.ejercicios.length} ejercicios</p>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width:${progreso}%;"></div>
                 </div>
@@ -228,7 +228,7 @@ function renderSubtema(subtema) {
     }
 
     if (teoria.notacion) {
-        html += `<div class="card" style="margin-top:20px;"><p style="margin:0; font-size:14px; color:var(--text-secondary);"><strong>Notación:</strong> ${formatearTexto(teoria.notacion)}</p></div>`;
+        html += `<div class="card" style="margin-top:20px;"><p style="margin:0; font-size:20px; color:var(--text-secondary);"><strong>Notación:</strong> ${formatearTexto(teoria.notacion)}</p></div>`;
     }
 
     if (teoria.nota_previa) {
@@ -377,10 +377,10 @@ function renderEjercicio(ej, num, subtema) {
     } else {
         html += `
             <div class="evaluacion-wrapper" id="eval-${ej.id}" style="display:none; margin-top:16px;">
-                <p style="color:var(--text-secondary); font-size:14px; margin-bottom:12px; text-align:center;">¿Tu solución coincide con la del sistema?</p>
+                <p style="color:var(--text-secondary); font-size:14px; margin-bottom:12px; text-align:center;">¿Lograste resolverlo?</p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button class="btn-eval btn-correcto" onclick="marcarEjercicioCompletado('${ej.id}', true)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--success); color:#fff; font-weight:600; cursor:pointer;">✅ Sí, coincide</button>
-                    <button class="btn-eval btn-incorrecto" onclick="marcarEjercicioCompletado('${ej.id}', false)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--danger); color:#fff; font-weight:600; cursor:pointer;">❌ No coincide</button>
+                    <button class="btn-eval btn-correcto" onclick="marcarEjercicioCompletado('${ej.id}', true)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--success); color:#fff; font-weight:600; cursor:pointer;">✅ Sí </button>
+                    <button class="btn-eval btn-incorrecto" onclick="marcarEjercicioCompletado('${ej.id}', false)" style="padding:10px 18px; border-radius:8px; border:none; background:var(--danger); color:#fff; font-weight:600; cursor:pointer;">❌ No </button>
                 </div>
             </div>
         `;
