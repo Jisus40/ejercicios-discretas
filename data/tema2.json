@@ -11,22 +11,22 @@
         "definiciones": [
           {
             "nombre": "Reticulado",
-            "contenido": "Sea $[L, \\leq]$ un orden parcial. Se dice que $[L, \\leq]$ es un **reticulado** si para todo par de elementos $x, y \\in L$ existen: (a) $\\inf\\{x,y\\} = x \\wedge y$ (ínfimo o meet), y (b) $\\sup\\{x,y\\} = x \\vee y$ (supremo o join).",
+            "contenido": "Sea $[L, \\leq]$ un orden parcial. Se dice que $[L, \\leq]$ es un reticulado si para todo par de elementos $x, y \\in L$ existen: (a) $\\inf\\{x,y\\} = x \\wedge y$ (ínfimo o meet), y (b) $\\sup\\{x,y\\} = x \\vee y$ (supremo o join).",
             "nota": "De manera resumida: un reticulado es un orden parcial en el cual todo par de elementos tiene ínfimo y supremo. Por tanto, $\\vee$ y $\\wedge$ son operaciones binarias sobre $L$."
           },
           {
             "nombre": "Relación de cobertura",
-            "contenido": "En un orden parcial $[L, \\leq]$, se dice que $y$ **cubre** a $x$ (o $x$ es cubierto por $y$), denotado $x \\prec y$, si $x \\leq y$, $x \\neq y$, y no existe $z \\in L$ tal que $x \\leq z \\leq y$ con $z \\neq x$ y $z \\neq y$.",
+            "contenido": "En un orden parcial $[L, \\leq]$, se dice que $y$ cubre a $x$ (o $x$ es cubierto por $y$), denotado $x \\prec y$, si $x \\leq y$, $x \\neq y$, y no existe $z \\in L$ tal que $x \\leq z \\leq y$ con $z \\neq x$ y $z \\neq y$.",
             "nota": "El diagrama de Hasse solo dibuja las aristas de cobertura. Es fundamental para visualizar reticulados."
           },
           {
             "nombre": "Elemento irreducible",
-            "contenido": "Un elemento $x \\in L$ es **join-irreducible** (irreducible por join) si $x = a \\vee b$ implica $x = a$ o $x = b$. Es decir, no puede expresarse como supremo de dos elementos estrictamente menores. Análogamente, $x$ es **meet-irreducible** si $x = a \\wedge b$ implica $x = a$ o $x = b$.",
+            "contenido": "Un elemento $x \\in L$ es join-irreducible (irreducible por join) si $x = a \\vee b$ implica $x = a$ o $x = b$. Es decir, no puede expresarse como supremo de dos elementos estrictamente menores. Análogamente, $x$ es meet-irreducible si $x = a \\wedge b$ implica $x = a$ o $x = b$.",
             "nota": "En un reticulado finito, los join-irreducibles son exactamente los elementos que cubren exactamente un elemento."
           },
           {
             "nombre": "Átomo",
-            "contenido": "En un reticulado acotado con mínimo $0$, un **átomo** es un elemento $a \\in L$ tal que $0 \\prec a$ (es decir, $a$ cubre al mínimo).",
+            "contenido": "En un reticulado acotado con mínimo $0$, un átomo es un elemento $a \\in L$ tal que $0 \\prec a$ (es decir, $a$ cubre al mínimo).",
             "nota": "Los átomos son los join-irreducibles minimales (distintos de 0). Son fundamentales en álgebras de Boole."
           }
         ],
@@ -77,15 +77,12 @@
         {
           "id": "2.1-ej-01",
           "nivel": 1,
-          "etiquetas": [
-            "teoria",
-            "ejercicio"
-          ],
+          "etiquetas": ["teoria", "ejercicio"],
           "enunciado": "Sea $[L, \\leq]$ un reticulado y sean $x, y, z \\in L$. Demuestre que si $x \\leq z$ e $y \\leq z$, entonces $x \\vee y \\leq z$.",
           "tips": [
             {
               "titulo": "¿Qué significa $x \\vee y$?",
-              "contenido": "Recuerda que $x \\vee y$ es la **menor** cota superior del conjunto $\\{x,y\\}$. Si encuentras otra cota superior, el supremo debe ser menor o igual que ella."
+              "contenido": "Recuerda que $x \\vee y$ es la menor cota superior del conjunto $\\{x,y\\}$. Si encuentras otra cota superior, el supremo debe ser menor o igual que ella."
             }
           ],
           "solucion": {
@@ -97,7 +94,7 @@
               },
               {
                 "titulo": "Aplicar definición de supremo",
-                "contenido": "Por definición, $x \\vee y = \\sup\\{x,y\\}$ es la **menor** de las cotas superiores. Como $z$ es una cota superior, el supremo debe precederla.",
+                "contenido": "Por definición, $x \\vee y = \\sup\\{x,y\\}$ es la menor de las cotas superiores. Como $z$ es una cota superior, el supremo debe precederla.",
                 "formula": "x \\vee y = \\sup\\{x,y\\} \\leq z"
               }
             ]
@@ -106,9 +103,7 @@
         {
           "id": "2.1-ej-02",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Demuestre el Lema 2.2: en un reticulado $[L, \\preceq]$, $z \\preceq x \\iff x \\wedge z = z \\iff x \\vee z = x$.",
           "tips": [
             {
@@ -143,9 +138,7 @@
         {
           "id": "2.1-ej-03",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Sea $L$ el conjunto de todas las proposiciones lógicas y sea $P \\preceq Q$ si $P \\implies Q$. Demuestre que $[L, \\preceq]$ es un orden parcial y determine si es un reticulado.",
           "tips": [
             {
@@ -180,10 +173,7 @@
         {
           "id": "2.1-ej-04",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Demuestre que en $[\\mathcal{P}(S), \\subseteq]$, $A \\cup B = \\sup\\{A,B\\}$ y $A \\cap B = \\inf\\{A,B\\}$.",
           "tips": [
             {
@@ -219,10 +209,7 @@
         {
           "id": "2.1-ej-05",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $D_{30} = \\{1, 2, 3, 5, 6, 10, 15, 30\\}$ con el orden de divisibilidad. Dibuje el diagrama de Hasse, identifique los átomos y los elementos join-irreducibles.",
           "tips": [
             {
@@ -257,10 +244,7 @@
         {
           "id": "2.1-ej-06",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Demuestre que en un reticulado finito $[L, \\leq]$, todo elemento distinto del mínimo puede expresarse como supremo de átomos si y solo si el reticulado es atómico (todo elemento contiene un átomo).",
           "tips": [
             {
@@ -291,7 +275,7 @@
         "definiciones": [
           {
             "nombre": "Propiedades universales de $\\wedge$ y $\\vee$",
-            "contenido": "En cualquier reticulado $[L, \\leq]$, para todo $x, y, z \\in L$ se cumplen: (1) **Idempotencia**: $x \\vee x = x$ y $x \\wedge x = x$; (2) **Asociativa**: $(x \\vee y) \\vee z = x \\vee (y \\vee z)$ y $(x \\wedge y) \\wedge z = x \\wedge (y \\wedge z)$; (3) **Conmutativa**: $x \\vee y = y \\vee x$ y $x \\wedge y = y \\wedge x$; (4) **Absorción**: $x \\vee (x \\wedge y) = x$ y $x \\wedge (x \\vee y) = x$.",
+            "contenido": "En cualquier reticulado $[L, \\leq]$, para todo $x, y, z \\in L$ se cumplen: (1) Idempotencia: $x \\vee x = x$ y $x \\wedge x = x$; (2) Asociativa: $(x \\vee y) \\vee z = x \\vee (y \\vee z)$ y $(x \\wedge y) \\wedge z = x \\wedge (y \\wedge z)$; (3) Conmutativa: $x \\vee y = y \\vee x$ y $x \\wedge y = y \\wedge x$; (4) Absorción: $x \\vee (x \\wedge y) = x$ y $x \\wedge (x \\vee y) = x$.",
             "nota": "Estas cuatro propiedades caracterizan completamente a los reticulados (Teorema 2.3)."
           },
           {
@@ -300,12 +284,12 @@
           },
           {
             "nombre": "Reticulado distributivo",
-            "contenido": "Un reticulado es **distributivo** si cumple las leyes distributivas: $x \\wedge (y \\vee z) = (x \\wedge y) \\vee (x \\wedge z)$ y $x \\vee (y \\wedge z) = (x \\vee y) \\wedge (x \\vee z)$.",
+            "contenido": "Un reticulado es distributivo si cumple las leyes distributivas: $x \\wedge (y \\vee z) = (x \\wedge y) \\vee (x \\wedge z)$ y $x \\vee (y \\wedge z) = (x \\vee y) \\wedge (x \\vee z)$.",
             "nota": "Basta con que se cumpla una de las dos leyes; la otra se deduce por dualidad."
           },
           {
             "nombre": "Subreticulado",
-            "contenido": "Sea $[L, \\wedge, \\vee]$ un reticulado. Un subconjunto $S \\subseteq L$ es un **subreticulado** si $S$ es cerrado bajo $\\wedge$ y $\\vee$ (es decir, para todo $x, y \\in S$: $x \\wedge y \\in S$ y $x \\vee y \\in S$).",
+            "contenido": "Sea $[L, \\wedge, \\vee]$ un reticulado. Un subconjunto $S \\subseteq L$ es un subreticulado si $S$ es cerrado bajo $\\wedge$ y $\\vee$ (es decir, para todo $x, y \\in S$: $x \\wedge y \\in S$ y $x \\vee y \\in S$).",
             "nota": "Un subreticulado hereda las operaciones del reticulado original."
           }
         ],
@@ -327,59 +311,16 @@
             "diagrama": {
               "tipo": "hasse",
               "nodos": [
-                {
-                  "id": "1",
-                  "etiqueta": "1",
-                  "nivel": 0
-                },
-                {
-                  "id": "a",
-                  "etiqueta": "a",
-                  "nivel": 1
-                },
-                {
-                  "id": "c",
-                  "etiqueta": "c",
-                  "nivel": 1
-                },
-                {
-                  "id": "b",
-                  "etiqueta": "b",
-                  "nivel": 2
-                },
-                {
-                  "id": "0",
-                  "etiqueta": "0",
-                  "nivel": 3
-                }
+                {"id": "1", "etiqueta": "1", "nivel": 0},
+                {"id": "a", "etiqueta": "a", "nivel": 1},
+                {"id": "c", "etiqueta": "c", "nivel": 1},
+                {"id": "b", "etiqueta": "b", "nivel": 2},
+                {"id": "0", "etiqueta": "0", "nivel": 3}
               ],
               "aristas": [
-                [
-                  "1",
-                  "a"
-                ],
-                [
-                  "1",
-                  "c"
-                ],
-                [
-                  "a",
-                  "b"
-                ],
-                [
-                  "c",
-                  "b"
-                ],
-                [
-                  "b",
-                  "0"
-                ]
+                ["1", "a"], ["1", "c"], ["a", "b"], ["c", "b"], ["b", "0"]
               ],
-              "destacados": [
-                "a",
-                "b",
-                "c"
-              ]
+              "destacados": ["a", "b", "c"]
             },
             "observacion": "$N_5$ tiene 5 elementos y es el reticulado no distributivo más pequeño posible."
           },
@@ -410,15 +351,13 @@
             "esquema_demostracion": "Este es un teorema profundo de la teoría de reticulados. La idea es que $N_5$ y $M_3$ son los 'obstáculos' mínimos para la distributividad."
           }
         ],
-        "nota_previa": "Observa que las leyes distributivas **no** aparecen en el Teorema 2.1. Esto no es un olvido: existen reticulados donde $x \\wedge (y \\vee z) \\neq (x \\wedge y) \\vee (x \\wedge z)$. La semidistributividad del Teorema 2.2 es lo más cercano que podemos garantizar universalmente."
+        "nota_previa": "Observa que las leyes distributivas no aparecen en el Teorema 2.1. Esto no es un olvido: existen reticulados donde $x \\wedge (y \\vee z) \\neq (x \\wedge y) \\vee (x \\wedge z)$. La semidistributividad del Teorema 2.2 es lo más cercano que podemos garantizar universalmente."
       },
       "ejercicios": [
         {
           "id": "2.2-ej-01",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Demuestre la propiedad de absorción en un reticulado: $x \\vee (x \\wedge y) = x$.",
           "tips": [
             {
@@ -453,9 +392,7 @@
         {
           "id": "2.2-ej-02",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Demuestre la desigualdad 2 del Teorema 2.2: $x \\vee (y \\wedge z) \\preceq (x \\vee y) \\wedge (x \\vee z)$.",
           "tips": [
             {
@@ -490,9 +427,7 @@
         {
           "id": "2.2-ej-03",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Sea $D_{12} = \\{1, 2, 3, 4, 6, 12\\}$ con el orden de divisibilidad $\\mid$. Dibuje el diagrama de Hasse y determine si $[D_{12}, \\mid]$ es un reticulado distributivo.",
           "tips": [
             {
@@ -525,10 +460,7 @@
         {
           "id": "2.2-ej-04",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Demuestre el Teorema 2.1: en cualquier reticulado, las operaciones $\\wedge$ y $\\vee$ satisfacen idempotencia, asociatividad, conmutatividad y absorción.",
           "tips": [
             {
@@ -568,10 +500,7 @@
         {
           "id": "2.2-ej-05",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Construya un reticulado no distributivo con exactamente 5 elementos que no sea isomorfo a $N_5$. Verifique que falla la distributividad.",
           "tips": [
             {
@@ -602,10 +531,7 @@
         {
           "id": "2.2-ej-06",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $[L, \\leq]$ un reticulado. Demuestre que si $L$ es totalmente ordenado (cadena), entonces $L$ es distributivo.",
           "tips": [
             {
@@ -636,6 +562,38 @@
               }
             ]
           }
+        },
+        {
+          "id": "2.2-ej-07",
+          "nivel": 4,
+          "etiquetas": ["ejercicio", "teorema_birkhoff", "avanzado", "nuevo"],
+          "enunciado": "Intuición del Teorema de Birkhoff: Demuestra que si un reticulado de 5 elementos no es distributivo, entonces FORZOSAMENTE es isomorfo a $N_5$ o a $M_3$. (Pista: Analiza qué pasa cuando $a \\wedge (b \\vee c) \\neq (a \\wedge b) \\vee (a \\wedge c)$).",
+          "tips": [
+            {
+              "titulo": "El fallo de la distributividad",
+              "contenido": "Si falla la distributividad, existen $a, b, c$ tales que $a \\wedge (b \\vee c) > (a \\wedge b) \\vee (a \\wedge c)$. Llama a estos 5 elementos clave: $0 = (a \\wedge b) \\vee (a \\wedge c)$, $1 = a \\vee (b \\wedge c)$, y los tres intermedios. ¿Puedes ordenarlos?"
+            },
+            {
+              "titulo": "Minimalidad",
+              "contenido": "Birkhoff demuestra que si tomas el subreticulado generado por estos 5 elementos, no puedes tener ninguna otra relación de orden entre ellos sin que la distributividad se 'arregle' mágicamente."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Paso 1: Identificar los 5 elementos",
+                "contenido": "Sea $x = a \\wedge (b \\vee c)$ y $y = (a \\wedge b) \\vee (a \\wedge c)$. Como no es distributivo, $y \\prec x$. Definimos los 5 elementos del subreticulado: $0 = y$, $1 = x$, y tres elementos intermedios derivados de $a, b, c$."
+              },
+              {
+                "titulo": "Paso 2: La estructura forzada",
+                "contenido": "Al aplicar las operaciones $\\vee$ y $\\wedge$ a estos 5 elementos, las leyes de absorción y semidistributividad 'obligan' a que el diagrama de Hasse resultante sea exactamente un pentágono ($N_5$) o un diamante ($M_3$). Cualquier arista extra que intentes dibujar colapsará la estructura y la hará distributiva."
+              },
+              {
+                "titulo": "Conclusión del Teorema",
+                "contenido": "Por lo tanto, $N_5$ y $M_3$ son los 'átomos de la no-distributividad'. Si tu reticulado es no distributivo, debe contener al menos uno de estos dos 'virus' en su estructura."
+              }
+            ]
+          }
         }
       ]
     },
@@ -643,6 +601,8 @@
       "subtema_id": "2.3",
       "titulo": "Reticulado a partir de un álgebra",
       "teoria": {
+        "motivacion": "¿Por qué molestarse en definir un reticulado usando operaciones (+, .) si ya lo entendemos con órdenes (\\vee, \\wedge)? Porque las computadoras no pueden 'ver' diagramas de Hasse ni verificar cotas superiores infinitas. Las computadoras solo saben evaluar operaciones binarias. Este enfoque algebraico es el puente exacto para implementar reticulados en software y es la base de las puertas lógicas (AND/OR).",
+        "puente_conceptual": "Imagina que pasamos de la geometría (diagramas de Hasse) al álgebra pura (ecuaciones). El Teorema 2.3 nos garantiza que no perdemos información en la traducción: ambas visiones son la misma estructura matemática.",
         "introduccion": "Hemos definido reticulados como órdenes parciales con ínfimo y supremo. Pero también es posible ir en dirección contraria: si tenemos un conjunto con dos operaciones que satisfacen ciertos axiomas algebraicos, podemos definir un orden que haga de ese conjunto un reticulado. Este enfoque algebraico es equivalente al ordenado y es fundamental para la teoría de álgebras de Boole.",
         "definiciones": [
           {
@@ -696,9 +656,7 @@
         {
           "id": "2.3-ej-01",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "En el Teorema 2.3, demuestre que $x \\cdot y = \\inf\\{x,y\\}$.",
           "tips": [
             {
@@ -728,9 +686,7 @@
         {
           "id": "2.3-ej-02",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Sea $X$ el conjunto de todas las funciones reales definidas en $[0,L]$. Se define $f \\preceq g \\iff f(x) \\leq g(x)$ para todo $x \\in [0,L]$. Demuestre que $[X, \\preceq]$ es un reticulado y exprese $f \\wedge g$ y $f \\vee g$.",
           "tips": [
             {
@@ -765,9 +721,7 @@
         {
           "id": "2.3-ej-03",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio"
-          ],
+          "etiquetas": ["ejercicio"],
           "enunciado": "Demuestre que en cualquier reticulado, para todo $x, y, z$ se cumple: $y \\preceq x \\implies y \\vee (x \\wedge z) \\preceq x \\wedge (y \\vee z)$.",
           "tips": [
             {
@@ -802,10 +756,7 @@
         {
           "id": "2.3-ej-04",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Demuestre completamente el Teorema 2.3: que $[L, \\preceq]$ con $x \\preceq y \\iff x + y = y$ es un orden parcial y que $x + y = \\sup\\{x,y\\}$.",
           "tips": [
             {
@@ -850,10 +801,7 @@
         {
           "id": "2.3-ej-05",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $L = \\mathbb{R}^2$ con operaciones $(a,b) + (c,d) = (\\max\\{a,c\\}, \\max\\{b,d\\})$ y $(a,b) \\cdot (c,d) = (\\min\\{a,c\\}, \\min\\{b,d\\})$. Demuestre que $[L, +, \\cdot]$ define un reticulado y describa el orden inducido.",
           "tips": [
             {
@@ -905,7 +853,7 @@
         "definiciones": [
           {
             "nombre": "Isomorfismo de reticulados",
-            "contenido": "Sean $[L_1, \\wedge_1, \\vee_1]$ y $[L_2, \\wedge_2, \\vee_2]$ dos reticulados. Una función $f: L_1 \\to L_2$ es un **isomorfismo de reticulados** si es biyectiva y preserva las operaciones: $f(x \\wedge_1 y) = f(x) \\wedge_2 f(y)$ y $f(x \\vee_1 y) = f(x) \\vee_2 f(y)$ para todo $x, y \\in L_1$.",
+            "contenido": "Sean $[L_1, \\wedge_1, \\vee_1]$ y $[L_2, \\wedge_2, \\vee_2]$ dos reticulados. Una función $f: L_1 \\to L_2$ es un isomorfismo de reticulados si es biyectiva y preserva las operaciones: $f(x \\wedge_1 y) = f(x) \\wedge_2 f(y)$ y $f(x \\vee_1 y) = f(x) \\vee_2 f(y)$ para todo $x, y \\in L_1$.",
             "nota": "Equivalentemente, $f$ es un isomorfismo de órdenes que preserva ínfimos y supremos."
           },
           {
@@ -933,11 +881,7 @@
         {
           "id": "2.4-ej-01",
           "nivel": 3,
-          "etiquetas": [
-            "teoria",
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["teoria", "ejercicio", "nuevo"],
           "enunciado": "Visualice un algoritmo formal para verificar: (a) Si un orden parcial finito dado es un reticulado. (b) Si un reticulado es distributivo.",
           "tips": [
             {
@@ -967,10 +911,7 @@
         {
           "id": "2.4-ej-02",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $[L, \\leq]$ un reticulado finito. Demuestre que $L$ tiene elemento máximo y elemento mínimo.",
           "tips": [
             {
@@ -1000,10 +941,7 @@
         {
           "id": "2.4-ej-03",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $L = \\{1, 2, 3, 6, 9, 18\\}$ con el orden de divisibilidad. Verifique que $[L, \\mid]$ es un reticulado, determine si es distributivo, y encuentre todos los subreticulados de 4 elementos.",
           "tips": [
             {
@@ -1043,10 +981,7 @@
         {
           "id": "2.4-ej-04",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Demuestre que el reticulado $[\\mathbb{N}, \\mid]$ (naturales con divisibilidad) no es distributivo. Sugerencia: encuentre un subreticulado isomorfo a $N_5$.",
           "tips": [
             {
@@ -1081,10 +1016,7 @@
         {
           "id": "2.4-ej-05",
           "nivel": 2,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $f: [L_1, \\wedge_1, \\vee_1] \\to [L_2, \\wedge_2, \\vee_2]$ un isomorfismo de reticulados. Demuestre que $f$ preserva el orden: $x \\preceq_1 y \\iff f(x) \\preceq_2 f(y)$.",
           "tips": [
             {
@@ -1110,10 +1042,7 @@
         {
           "id": "2.4-ej-06",
           "nivel": 3,
-          "etiquetas": [
-            "ejercicio",
-            "nuevo"
-          ],
+          "etiquetas": ["ejercicio", "nuevo"],
           "enunciado": "Sea $[L, \\leq]$ un reticulado distributivo finito. Demuestre que todo elemento de $L$ puede escribirse de forma única como supremo de join-irreducibles incomparables (Teorema de representación de Birkhoff).",
           "tips": [
             {
@@ -1134,6 +1063,118 @@
               {
                 "titulo": "Unicidad",
                 "contenido": "Supongamos $x = a_1 \\vee \\dots \\vee a_k = b_1 \\vee \\dots \\vee b_m$ con $a_i, b_j$ join-irreducibles incomparables. Para cada $a_i$: $a_i \\preceq x = b_1 \\vee \\dots \\vee b_m$. Como $a_i$ es join-irreducible y el reticulado es distributivo, $a_i \\preceq b_j$ para algún $j$. Análogamente, cada $b_j \\preceq a_i$ para algún $i$. Por incomparabilidad, las familias coinciden."
+              }
+            ]
+          }
+        }
+      ]
+    },
+        {
+      "subtema_id": "2.5",
+      "titulo": "Puente a Álgebras de Boole: Notación Lógica y Computacional",
+      "teoria": {
+        "introduccion": "Hasta ahora hemos usado la notación de orden ($\\vee, \\wedge, \\preceq$). En computación y lógica, usamos la notación algebraica ($+, \\cdot, \\leq$). Es vital saber traducir entre ambos idiomas.",
+        "tabla_traduccion": [
+          {"concepto": "Supremo (Join)", "notacion_orden": "x \\vee y", "notacion_algebraica": "x + y", "logica": "x OR y (Disyunción)"},
+          {"concepto": "Ínfimo (Meet)", "notacion_orden": "x \\wedge y", "notacion_algebraica": "x \\cdot y", "logica": "x AND y (Conjunción)"},
+          {"concepto": "Relación de Orden", "notacion_orden": "x \\preceq y", "notacion_algebraica": "x + y = y", "logica": "x \\implies y (Implicación)"},
+          {"concepto": "Complemento", "notacion_orden": "x' (complementado)", "notacion_algebraica": "\\bar{x}", "logica": "NOT x (Negación)"}
+        ],
+        "nota_previa": "El Teorema 2.3 que acabamos de demostrar es exactamente lo que nos permite usar esta tabla de traducción sin miedo a equivocarnos."
+      },
+      "ejercicios": [
+        {
+          "id": "2.5-ej-01",
+          "nivel": 2,
+          "etiquetas": ["ejercicio", "traduccion", "nuevo"],
+          "enunciado": "Traduce la Ley de Absorción del orden ($x \\vee (x \\wedge y) = x$) a notación de circuitos lógicos (AND/OR) y demuestra por qué tiene sentido intuitivo en electrónica.",
+          "tips": [
+            {
+              "titulo": "Traducción",
+              "contenido": "Reemplaza $\\vee$ por OR, $\\wedge$ por AND. La ecuación queda: $x \\lor (x \\land y) = x$."
+            },
+            {
+              "titulo": "Intuición electrónica",
+              "contenido": "Si tienes un cable '$x$' que pasa por una compuerta AND junto con '$y$', el resultado de ese AND siempre será menor o igual que '$x$'. Si luego haces un OR con el cable original '$x$', el resultado final siempre será '$x$', sin importar qué haga '$y$'."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Traducción algebraica",
+                "contenido": "$x + (x \\cdot y) = x$. (En lógica: $x \\lor (x \\land y) \\equiv x$)."
+              },
+              {
+                "titulo": "Demostración lógica (Tabla de verdad)",
+                "contenido": "Si $x = 0$: $0 \\lor (0 \\land y) = 0 \\lor 0 = 0$. Si $x = 1$: $1 \\lor (1 \\land y) = 1 \\lor y = 1$. En ambos casos, el resultado es $x$. La variable '$y$' es absorbida."
+              }
+            ]
+          }
+        },
+        {
+          "id": "2.5-ej-02",
+          "nivel": 2,
+          "etiquetas": ["ejercicio", "traduccion", "nuevo", "de_morgan"],
+          "enunciado": "Traduce las Leyes de De Morgan desde el Álgebra de Boole ($\\overline{x + y} = \\bar{x} \\cdot \\bar{y}$) a la notación de Reticulados (Orden) y a la Lógica Proposicional. Verifica la versión lógica con una tabla de verdad y explica su equivalencia en compuertas lógicas.",
+          "tips": [
+            {
+              "titulo": "Traducción a Reticulados",
+              "contenido": "Usa la tabla: $+$ es $\\vee$, $\\cdot$ es $\\wedge$, y el complemento $\\bar{x}$ es $x'$."
+            },
+            {
+              "titulo": "Equivalencia de compuertas",
+              "contenido": "Una compuerta NOR ($\\overline{x + y}$) debe ser equivalente a una compuerta AND ($\\cdot$) pero con las entradas invertidas ($\\bar{x}$ y $\\bar{y}$)."
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Traducción a notación de Orden (Reticulados)",
+                "contenido": "Reemplazando las operaciones: $(x \\vee y)' = x' \\wedge y'$. (El complemento del supremo es el ínfimo de los complementos)."
+              },
+              {
+                "titulo": "Traducción a Lógica Proposicional",
+                "contenido": "La negación de la disyunción es la conjunción de las negaciones: $\\neg(P \\lor Q) \\equiv \\neg P \\land \\neg Q$."
+              },
+              {
+                "titulo": "Verificación con Tabla de Verdad",
+                "contenido": "Si $P=0, Q=0$: $\\neg(0 \\lor 0) = 1$, y $1 \\land 1 = 1$. Coinciden. Si $P=1, Q=0$: $\\neg(1 \\lor 0) = 0$, y $0 \\land 1 = 0$. Coinciden. La equivalencia es una tautología."
+              },
+              {
+                "titulo": "Intuición en Circuitos (Teorema de De Morgan)",
+                "contenido": "Esto nos dice que un transistor configurado como NOR (OR seguido de NOT) es funcionalmente idéntico a un transistor configurado como AND con entradas negadas. Es la base para simplificar circuitos usando solo un tipo de compuerta universal (como NAND o NOR)."
+              }
+            ]
+          }
+        },
+        {
+          "id": "2.5-ej-03",
+          "nivel": 3,
+          "etiquetas": ["ejercicio", "traduccion", "nuevo", "logica"],
+          "enunciado": "En la teoría de reticulados, se cumple que si $x \\preceq y$ y $x \\preceq z$, entonces $x \\preceq y \\wedge z$ (ya que $y \\wedge z$ es la mayor cota inferior). Traduce esta propiedad a Lógica Proposicional usando la equivalencia $x \\preceq y \\iff x \\implies y$. ¿Qué regla fundamental de deducción lógica representa esto?",
+          "tips": [
+            {
+              "titulo": "Sustituye los símbolos",
+              "contenido": "Reemplaza $\\preceq$ por $\\implies$ (implicación) y $\\wedge$ por $\\land$ (conjunción / AND)."
+            },
+            {
+              "titulo": "Piensa en una demostración matemática",
+              "contenido": "Si una hipótesis $P$ te permite demostrar $Q$, y la misma hipótesis $P$ te permite demostrar $R$... ¿qué puedes concluir sobre $P$?"
+            }
+          ],
+          "solucion": {
+            "pasos": [
+              {
+                "titulo": "Traducción a Lógica Proposicional",
+                "contenido": "La propiedad del reticulado se traduce literalmente como: Si $(P \\implies Q)$ y $(P \\implies R)$, entonces $(P \\implies (Q \\land R))$."
+              },
+              {
+                "titulo": "Significado Lógico (Regla de Deducción)",
+                "contenido": "Esta propiedad representa la **Regla de Introducción de la Conjunción** (o combinación de premisas). En matemáticas, si bajo la hipótesis $P$ logras probar el teorema $Q$, y bajo la misma hipótesis $P$ logras probar el teorema $R$, entonces puedes afirmar con seguridad que $P$ implica que ambos teoremas son ciertos simultáneamente ($Q \\land R$)."
+              },
+              {
+                "titulo": "Verificación Algebraica",
+                "contenido": "En álgebra booleana, la hipótesis $P \\implies Q$ significa $P \\cdot Q = Q$. Si $P \\cdot Q = Q$ y $P \\cdot R = R$, entonces $P \\cdot (Q \\cdot R) = (P \\cdot Q) \\cdot R = Q \\cdot R$. Esto confirma que $P \\implies (Q \\land R)$."
               }
             ]
           }
