@@ -656,29 +656,48 @@
         {
           "id": "2.3-ej-01",
           "nivel": 2,
-          "etiquetas": ["ejercicio"],
+          "etiquetas": ["ejercicio", "dualidad", "corregido"],
           "enunciado": "En el Teorema 2.3, demuestre que $x \\cdot y = \\inf\\{x,y\\}$.",
           "tips": [
             {
-              "titulo": "Dualidad",
-              "contenido": "La demostración es análoga a la de $x + y = \\sup\\{x,y\\}$, pero usando la operación $\\cdot$ en lugar de $+$ y el orden definido dualmente."
+              "titulo": "El truco de la dualidad",
+              "contenido": "Para demostrar propiedades del ínfimo ($\\cdot$), no uses la definición $a+b=b$. Usa su definición gemela (equivalente por absorción): $a \\preceq b \\iff a \\cdot b = a$. Esto hará que la demostración sea el 'espejo' perfecto de la del supremo."
             },
             {
               "titulo": "Cota inferior",
-              "contenido": "Primero demuestra que $x \\cdot y$ es cota inferior de $\\{x,y\\}$: $x \\cdot y \\preceq x$ y $x \\cdot y \\preceq y$."
+              "contenido": "Debes probar que $(x \\cdot y) \\preceq x$. Usando el truco, esto equivale a probar que $(x \\cdot y) \\cdot x = x \\cdot y$. ¡La conmutatividad, asociatividad e idempotencia lo resuelven!"
+            },
+            {
+              "titulo": "Mayor cota inferior",
+              "contenido": "Si $z$ es cota inferior, entonces $z \\preceq x$ y $z \\preceq y$. Con el truco, esto significa que $z \\cdot x = z$ y $z \\cdot y = z$. Queremos probar $z \\preceq x \\cdot y$, es decir, $z \\cdot (x \\cdot y) = z$."
             }
           ],
           "solucion": {
             "pasos": [
               {
-                "titulo": "$x \\cdot y$ es cota inferior",
-                "contenido": "Por absorción: $x \\cdot (x + y) = x$. Como $x + y$ es supremo, y usando las propiedades duales, se tiene $x \\cdot y \\preceq x$ y $x \\cdot y \\preceq y$. Por tanto, $x \\cdot y$ es cota inferior de $\\{x,y\\}$.",
-                "formula": "x \\cdot y \\preceq x \\quad \\text{y} \\quad x \\cdot y \\preceq y"
+                "titulo": "Paso 1: La Definición Dual del Orden",
+                "contenido": "Sabemos que $a \\preceq b \\iff a + b = b$. Pero por las leyes de absorción, esto es matemáticamente equivalente a $a \\preceq b \\iff a \\cdot b = a$. Usaremos esta segunda forma para que la demostración del ínfimo use exclusivamente las propiedades del producto ($\\cdot$).",
+                "formula": "a \\preceq b \\iff a \\cdot b = a"
               },
               {
-                "titulo": "$x \\cdot y$ es la mayor cota inferior",
-                "contenido": "Sea $z$ una cota inferior de $\\{x,y\\}$. Entonces $z \\preceq x$ y $z \\preceq y$, es decir, $z + x = x$ y $z + y = y$. Queremos probar $z \\preceq x \\cdot y$, es decir, $z + (x \\cdot y) = x \\cdot y$. Usando absorción y las propiedades: $z + (x \\cdot y) = (z + x) \\cdot (z + y) = x \\cdot y$ (por distributividad de la suma sobre el producto, que se deduce de las leyes de absorción).",
-                "formula": "z + (x \\cdot y) = x \\cdot y \\implies z \\preceq x \\cdot y"
+                "titulo": "Paso 2: $x \\cdot y$ es cota inferior de $\\{x,y\\}$",
+                "contenido": "Debemos probar que $x \\cdot y \\preceq x$ y $x \\cdot y \\preceq y$. Usando nuestra definición dual, probamos que $(x \\cdot y) \\cdot x = x \\cdot y$.",
+                "formula": "(x \\cdot y) \\cdot x = x \\cdot y"
+              },
+              {
+                "titulo": "Detalle del Paso 2",
+                "contenido": "1. Conmutatividad: $(x \\cdot y) \\cdot x = x \\cdot (y \\cdot x) = x \\cdot (x \\cdot y)$. <br> 2. Asociatividad: $x \\cdot (x \\cdot y) = (x \\cdot x) \\cdot y$. <br> 3. Idempotencia: $(x \\cdot x) \\cdot y = x \\cdot y$. <br> Por lo tanto, $(x \\cdot y) \\cdot x = x \\cdot y$, lo que significa que $x \\cdot y \\preceq x$. Análogamente se prueba que $x \\cdot y \\preceq y$.",
+                "formula": "(x \\cdot y) \\cdot x = x \\cdot (x \\cdot y) = (x \\cdot x) \\cdot y = x \\cdot y"
+              },
+              {
+                "titulo": "Paso 3: $x \\cdot y$ es la MAYOR cota inferior",
+                "contenido": "Sea $z$ cualquier cota inferior de $\\{x,y\\}$. Esto significa que $z \\preceq x$ y $z \\preceq y$. Usando la definición dual, esto equivale a $z \\cdot x = z$ y $z \\cdot y = z$. Queremos probar que $z \\preceq x \\cdot y$, es decir, que $z \\cdot (x \\cdot y) = z$.",
+                "formula": "z \\cdot (x \\cdot y) = z"
+              },
+              {
+                "titulo": "Detalle del Paso 3",
+                "contenido": "Tomamos $z \\cdot (x \\cdot y)$. <br> 1. Por Asociatividad: $z \\cdot (x \\cdot y) = (z \\cdot x) \\cdot y$. <br> 2. Como $z$ es cota inferior de $x$, sabemos que $z \\cdot x = z$. Sustituimos: $= z \\cdot y$. <br> 3. Como $z$ es cota inferior de $y$, sabemos que $z \\cdot y = z$. Sustituimos: $= z$. <br> ¡Listo! $z \\cdot (x \\cdot y) = z$, lo que demuestra que $z \\preceq x \\cdot y$.",
+                "formula": "z \\cdot (x \\cdot y) = (z \\cdot x) \\cdot y = z \\cdot y = z"
               }
             ]
           }
